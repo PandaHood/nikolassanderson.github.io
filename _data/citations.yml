@@ -1,11 +1,15 @@
 metadata:
-  last_updated: '2026-01-19'
+  last_updated: '2026-02-09'
 papers:
   Y2Ge54EAAAAJ:2osOgNQ5qMEC:
     citations: 2
     title: Contingency Constrained Planning with MPPI within MPPI
     year: '2024'
   Y2Ge54EAAAAJ:9yKSN-GCB0IC:
+    citations: 0
+    title: A Hybrid Framework for Efficient Koopman Operator Learning
+    year: '2025'
+  Y2Ge54EAAAAJ:IjCSPb-OGe4C:
     citations: 0
     title: A Hybrid Framework for Efficient Koopman Operator Learning
     year: '2025'
@@ -18,7 +22,7 @@ papers:
     title: Verification of Visual Controllers via Compositional Geometric Transformations
     year: '2025'
   Y2Ge54EAAAAJ:qjMakFHDy7sC:
-    citations: 2
+    citations: 3
     title: Lidar inertial odometry and mapping using learned registration-relevant features
     year: '2025'
   Y2Ge54EAAAAJ:u-x6o8ySG0sC:
