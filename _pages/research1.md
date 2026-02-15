@@ -14,7 +14,7 @@ nav_order: 1
 
 ---
 
-## Why this matters (the problem the paper starts with)
+## Why this matters
 
 Factor graphs are the standard tool for SLAM and state estimation because they scale: each measurement becomes a small factor, sparsity falls out naturally, and we can solve huge problems quickly.
 
@@ -28,7 +28,7 @@ That certificate changes how you can build systems. It gives you a principled *t
 
 ---
 
-## The usual route to certificates (and why it’s hard)
+## The usual route to certificates
 
 A common way to get certifiability is to form a **convex relaxation** of the original nonconvex estimation problem (often a QCQP) as a **semidefinite program (SDP)**. If the relaxation is tight, the SDP solution corresponds to the global optimum of the original problem—so you’re done, with proof.
 
@@ -40,7 +40,7 @@ So the paper’s question becomes more specific:
 
 ---
 
-## The key idea (the paper’s central story)
+## The key idea
 
 The big insight is that the factor graph’s structure can survive the two transformations that usually scare people:
 
@@ -63,7 +63,7 @@ This is why the paper is significant: it reframes certifiable estimation as some
 
 ---
 
-## What the Certi-FGO pipeline does (end-to-end)
+## What the Certi-FGO pipeline does
 
 The paper lays out a practical loop that looks like this:
 
@@ -87,7 +87,7 @@ If the certificate fails, the algorithm increases the rank of the BM factorizati
 **This is a big practical win:** the method has a built-in, principled “try harder” knob (rank), rather than only heuristic restarts.
 
 ---
- {% include figure.html path="assets/img/Plaza2-Cora.gif" class="img-fluid rounded z-depth-1" %} 
+ {% include figure.html path="assets/img/Plaza2-CORA.gif" class="img-fluid rounded z-depth-1" %} 
  ---
 
 ## What’s the actual significance?
@@ -110,6 +110,9 @@ That’s exactly the kind of behavior you want in safety-critical or high-autono
 
 
 ---
+
+ {% include figure.html path="assets/img/plots.png" class="img-fluid rounded z-depth-1" %} 
+
 
 ## Closing thought
 
