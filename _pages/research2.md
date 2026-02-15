@@ -133,10 +133,36 @@ A final practical win is memory. Avoiding dense reduced matrices and avoiding di
 
 ## Links
 
-- Preprint arXiv 2512.07969  
-  https://arxiv.org/abs/2512.07969
-- Open source code  
-  https://github.com/UMich-RobotExploration
+### Preprint
+
+[![arXiv 2512.07969](https://img.shields.io/badge/arXiv-2512.07969-b31b1b.svg)](https://arxiv.org/abs/2512.07969)  
+[Read on arXiv](https://arxiv.org/abs/2512.07969)  
+[Download PDF](https://arxiv.org/pdf/2512.07969.pdf)
+
+<iframe
+  src="https://arxiv.org/pdf/2512.07969.pdf"
+  width="100%"
+  height="650"
+  style="border:1px solid #e5e7eb; border-radius:12px;"
+  loading="lazy">
+</iframe>
+
+---
+
+### Open source code
+
+[![GitHub UMich RobotExploration](https://img.shields.io/badge/GitHub-UMich--RobotExploration-181717.svg)](https://github.com/UMich-RobotExploration)  
+[View the GitHub org](https://github.com/UMich-RobotExploration)
+
+<iframe
+  src="https://ghbtns.com/github-btn.html?user=UMich-RobotExploration&type=follow&count=true"
+  frameborder="0"
+  scrolling="0"
+  width="210"
+  height="20"
+  title="GitHub follow button">
+</iframe>
+
 
 ---
 
