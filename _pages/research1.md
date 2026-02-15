@@ -6,114 +6,121 @@ nav_order: 1
 ---
 
 **Date:** 2026-02-14  
-**Tags:** robotics, SLAM, factor-graphs, SDP, certifiable-estimation, optimization  
+**Tags:** robotics, SLAM, factor-graphs, certifiable-estimation, SDP, optimization
 
-![Local vs certifiable “solve the same graph” pipeline](sandbox:/mnt/data/factorgraph_certifiable_pipeline.png)
+![Certifiable factor-graph pipeline](./images/factorgraph_certifiable_pipeline.png)
 
----
-
-## Table of contents
-
-- [Why I care about certificates (not just good looking trajectories)](#why-i-care-about-certificates-not-just-good-looking-trajectories)
-- [The key trick: the graph survives the lift](#the-key-trick-the-graph-survives-the-lift)
-- [What “structure preserved” actually means in math terms](#what-structure-preserved-actually-means-in-math-terms)
-- [Certi-FGO in one picture](#certi-fgo-in-one-picture)
-- [What a lifted factor looks like (example)](#what-a-lifted-factor-looks-like-example)
-- [A practical workflow you can actually run](#a-practical-workflow-you-can-actually-run)
-- [Embedded media: a quick rabbit hole](#embedded-media-a-quick-rabbit-hole)
-- [If you’re building systems: when to reach for this](#if-youre-building-systems-when-to-reach-for-this)
+> **What this post is about:** The Certi-FGO paper asks a simple question: *can we keep the usability and scalability of factor graphs, but add a “this solution is globally optimal” certificate?*  
+> The answer is **yes**, by lifting the problem the right way **without destroying factor-graph sparsity**.
 
 ---
 
-## Why I care about certificates (not just good looking trajectories)
+## Why this matters (the problem the paper starts with)
 
-If you’ve built a SLAM or navigation pipeline in the real world, you know the feeling: your factor graph converges fast… and occasionally converges **confidently to nonsense**. Local methods are amazing because they’re efficient and “plug-and-play,” but by design they target *a* stationary point, not *the* global solution.
+Factor graphs are the standard tool for SLAM and state estimation because they scale: each measurement becomes a small factor, sparsity falls out naturally, and we can solve huge problems quickly.
 
-Certifiable estimation flips the script: solve a convex relaxation (typically an SDP) and, when it’s tight, you get a **verifiable global optimum**—a certificate you can check after the fact. The catch is that SDPs at robotics scale are notorious: generic solvers don’t scale, and custom structure-exploiting implementations can be a whole research project.
+But the downside is equally familiar: most solvers we use are **local**. They converge to a nearby stationary point. When the problem is well-conditioned and initialization is good, that’s fine. When it isn’t—symmetries, poor initialization, ambiguous data association, multi-robot alignment—local solvers can converge to the wrong answer and still look “confident.”
 
-The exciting middle ground is: **keep the factor-graph workflow, but add certifiability**.
+The paper’s core motivation is to add a missing capability:
 
----
+- Not just “here is a solution,” but **“here is a certificate that this solution is globally optimal.”**
 
-## The key trick: the graph survives the lift
-
-Here’s the central idea that makes the whole thing “feel like factor graphs again”:
-
-> When you lift a QCQP through Shor’s relaxation and then apply Burer–Monteiro (BM) factorization, the **factor graph structure is preserved** because these transformations change the decision variables but *do not change the data matrices* that encode sparsity.
-
-In the Certi-FGO framing, this becomes a one-to-one correspondence between original and lifted graphs: the BM-factorized problem admits a factor-graph decomposition whose **factors and variables correspond directly** to those of the original QCQP, preserving sparsity while enabling global guarantees.
+That certificate changes how you can build systems. It gives you a principled *trust signal* you can use downstream (planning, mapping QA, loop-closure validation, multi-robot alignment gates).
 
 ---
 
-## What “structure preserved” actually means in math terms
+## The usual route to certificates (and why it’s hard)
 
-Most factor-graph problems we write down can be expressed (or rearranged) as a **QCQP** with block variables. A key observation: constraints usually act *per-variable* (e.g., “this rotation is orthogonal”), while measurements couple *small subsets* (e.g., odometry couples pose *i* and *j*). This induces block structure.
+A common way to get certifiability is to form a **convex relaxation** of the original nonconvex estimation problem (often a QCQP) as a **semidefinite program (SDP)**. If the relaxation is tight, the SDP solution corresponds to the global optimum of the original problem—so you’re done, with proof.
 
-### 1) Constraints remain per-variable (block diagonal)
+The obstacle: generic SDP solvers don’t scale well for large robotics graphs. If “certifiable” requires solving a giant dense SDP, it stays a theory tool, not a practical backend.
 
-If the feasible set factors as a Cartesian product across variables, then each quadratic constraint touches only one variable block. In matrix form, that shows up as block-diagonal constraint matrices: each constraint matrix has a single nonzero block.
+So the paper’s question becomes more specific:
 
-Concretely, the constraints can be rewritten blockwise, one block per variable.
-
-### 2) Lifting doesn’t densify your sparsity
-
-Shor’s relaxation replaces outer products \(XX^\top\) with a Gram matrix \(Z\), but the lifted blocks still correspond to the same variable pairs (now as \(Z_{ij}\)).
-
-Then BM factorization writes \(Z = YY^\top\), and you can block-partition \(Y\) so each lifted block row corresponds to the original variable.
-
-**Bottom line:** the lifted objective still decomposes into a sum of small factors over small neighborhoods, and the lifted constraints still apply per variable block.
+> Can we get the benefits of an SDP relaxation **without giving up factor graph structure**?
 
 ---
 
-## Certi-FGO in one picture
+## The key idea (the paper’s central story)
 
-This diagram is the “storyboard” version of the whole pipeline: build a lifted factor graph, do local optimization in the lifted space, compute a certificate, and (if needed) increase rank and escape saddles (Riemannian Staircase).
+The big insight is that the factor graph’s structure can survive the two transformations that usually scare people:
 
-![Figure: Certi-FGO overview on the Riemannian Staircase + certificates](sandbox:/mnt/data/certi_fgo_page9.png)
+1. **Shor’s relaxation (lifting)**: replaces products of variables with a lifted matrix representation.
+2. **Burer–Monteiro factorization (BM)**: represents that lifted matrix as a low-rank product, turning the SDP into a (structured) nonconvex problem on a manifold.
 
-Two details I like in this view:
+Here’s the punchline in plain terms:
 
-- The lifted feasible set is a **product** of per-variable manifolds \( \mathcal M^{(p)} = \mathcal M^{(p)}_1 \times \cdots \times \mathcal M^{(p)}_N \).
-- The “verification” step checks the smallest eigenpair of the certificate matrix \(S\); if it’s PSD, you’re certified; otherwise increase rank and take a negative-curvature direction.
+- **Lifting changes what the variables look like**, but it doesn’t have to change *which variables interact*.
+- If the original factor graph only couples small neighborhoods (like pose pairs), the lifted version can be built so that it *still* couples only those neighborhoods.
 
----
+That means we can build a **lifted factor graph** that looks and behaves like a normal factor graph:
+- small factors
+- sparse structure
+- scalable computation
 
-## What a lifted factor looks like (example)
+…but with the ability to produce a **certificate**.
 
-One reason this approach is practical is that many lifted factors are “swap the variable type, keep the form.”
-
-### Example: relative rotation factor
-
-Start from the classic MLE-style Frobenius residual explanation of a relative rotation measurement:
-
-- Original: \( \|R_j - R_i \tilde R_{ij}\|_F^2 \)
-
-Then the lifted version is the same residual, but with lifted rotation variables \(Y_i, Y_j\) on a Stiefel manifold and the same measured \(\tilde R_{ij}\):
-
-- Lifted: \( \|Y_j - Y_i \tilde R_{ij}\|_F^2 \)
-
-That’s the “feel like factor graphs” moment: you still build a graph out of small residual factors; your optimizer still sees Jacobians and sparsity; you just changed the variable representation and wrapped it in a certifiable meta-algorithm.
+This is why the paper is significant: it reframes certifiable estimation as something that can live inside the factor-graph workflow, rather than replacing it with an entirely different solver stack.
 
 ---
 
-## A practical workflow you can actually run
+## What the Certi-FGO pipeline does (end-to-end)
 
-Here’s the mental model I use for implementing this in a robotics codebase:
+The paper lays out a practical loop that looks like this:
 
-1. **Model as usual**: build your factor graph (poses, landmarks, ranges, bearings, etc.).
-2. **Ensure QCQP-representable pieces**: rotations, unit vectors, squared norms, etc.
-3. **Lift variables**: rotations \(\to\) Stiefel blocks, translations \(\to\) higher-dimensional vectors (still unconstrained).
-4. **Lift factors**: keep the same factor templates; swap in lifted variables.
-5. **Run Riemannian Staircase**: local optimize, certify, and if not certified, increase rank and escape.
+### Step 1 — Build the lifted factor graph
+You start with your usual estimation problem (poses, relative measurements, maybe landmarks) and rewrite it as a QCQP. Then you lift it (Shor relaxation) and apply BM factorization so the variables become *lifted blocks*.
 
-A simple “certify or climb” loop looks like:
+In practice, rotation-like variables become **Stiefel-manifold blocks** (tall orthonormal matrices), and the factors become lifted versions of familiar residuals (same “two-node” structure, different variable type).
 
-```text
-repeat:
-  Y*  <- local-optimize lifted factor graph (rank p)
-  S   <- build certificate matrix
-  if min_eig(S) >= 0:
-       return certified solution
-  else:
-       p <- p + 1
-       escape along negative curvature direction
+### Step 2 — Optimize locally *in the lifted space*
+You run a local solver, but now it’s **Riemannian optimization** over the product of these lifted manifolds. This step is conceptually similar to “run Gauss–Newton on the graph,” just on different geometry.
+
+### Step 3 — Certify
+After optimizing, you compute a certificate object (the paper uses a certificate matrix whose PSD-ness indicates global optimality). Operationally, you check something like:
+
+- if the smallest eigenvalue is nonnegative → **certified globally optimal**
+- otherwise → not certified (either the relaxation isn’t tight at this rank, or you’re at a bad stationary point)
+
+### Step 4 — If not certified, increase rank and try again (Riemannian Staircase)
+If the certificate fails, the algorithm increases the rank of the BM factorization and continues—this is the “staircase” mechanism. The idea is that as you increase rank, you have a better chance of reaching a point that corresponds to the tight SDP solution.
+
+**This is a big practical win:** the method has a built-in, principled “try harder” knob (rank), rather than only heuristic restarts.
+
+---
+
+## The paper’s overview figure (the story in one graphic)
+
+![Certi-FGO overview figure (paper)](./images/certi_fgo_page9.png)
+
+This figure is basically the paper’s narrative: optimize → verify → either certify or climb the staircase.
+
+---
+
+## What’s the actual significance?
+
+Here’s what I take away as the “so what”:
+
+1. **Certifiability becomes a *drop-in capability***  
+   If you already think in factor graphs, Certi-FGO suggests you don’t need to abandon that ecosystem to get global guarantees.
+
+2. **Structure is the scaling story**  
+   The reason factor graphs scale is sparsity. The paper’s central contribution is showing how to keep that structure through lifting + BM, so certification doesn’t automatically imply “dense SDP pain.”
+
+3. **A clean system-level interface**  
+   From a system perspective, this gives a nice API:
+   - run estimation
+   - ask: “certified or not?”
+   - if not, run a principled escalation (rank)
+
+That’s exactly the kind of behavior you want in safety-critical or high-autonomy settings: don’t just output an estimate—output an estimate with a verifiable quality flag.
+
+
+---
+
+## Closing thought
+
+Certi-FGO is exciting because it treats certifiability as a **workflow feature**, not just a theoretical property. The paper’s story is basically: *don’t throw away factor graphs—lift them carefully so you can keep sparsity, optimize efficiently, and still certify global optimality when the relaxation is tight.*
+
+> **Note for your markdown site:** I used relative paths like `./images/...` and `./assets/...`. Put the images and PDF there (or replace with your hosted URLs).
+
