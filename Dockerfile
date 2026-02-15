@@ -1,76 +1,56 @@
-FROM ruby:slim
-
-# uncomment these if you are having this issue with the build:
-# /usr/local/bundle/gems/jekyll-4.3.4/lib/jekyll/site.rb:509:in `initialize': Permission denied @ rb_sysopen - /srv/jekyll/.jekyll-cache/.gitignore (Errno::EACCES)
-# ARG GROUPID=901
-# ARG GROUPNAME=ruby
-# ARG USERID=901
-# ARG USERNAME=jekyll
-
-ENV DEBIAN_FRONTEND noninteractive
-
-LABEL authors="Amir Pourmand,George Araújo" \
-      description="Docker image for al-folio academic template" \
-      maintainer="Amir Pourmand"
-
-# uncomment these if you are having this issue with the build:
-# /usr/local/bundle/gems/jekyll-4.3.4/lib/jekyll/site.rb:509:in `initialize': Permission denied @ rb_sysopen - /srv/jekyll/.jekyll-cache/.gitignore (Errno::EACCES)
-# add a non-root user to the image with a specific group and user id to avoid permission issues
-# RUN groupadd -r $GROUPNAME -g $GROUPID && \
-#     useradd -u $USERID -m -g $GROUPNAME $USERNAME
-
-# install system dependencies
-RUN apt-get update -y && \
-    apt-get install -y --no-install-recommends \
-        build-essential \
-        curl \
-        git \
-        imagemagick \
-        inotify-tools \
-        locales \
-        nodejs \
-        procps \
-        python3-pip \
-        zlib1g-dev && \
-    pip --no-cache-dir install --upgrade --break-system-packages nbconvert
-
-# clean up
-RUN apt-get clean && \
-    apt-get autoremove && \
-    rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*  /tmp/*
-
-# set the locale
+FROM bitnami/minideb:latest
+Label MAINTAINER Amir Pourmand
+RUN apt-get update -y
+# add locale
+RUN apt-get -y install locales
+# Set the locale
 RUN sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && \
     locale-gen
+ENV LANG en_US.UTF-8  
+ENV LANGUAGE en_US:en  
+ENV LC_ALL en_US.UTF-8  
 
-# set environment variables
-ENV EXECJS_RUNTIME=Node \
-    JEKYLL_ENV=production \
-    LANG=en_US.UTF-8 \
-    LANGUAGE=en_US:en \
-    LC_ALL=en_US.UTF-8
-
-# create a directory for the jekyll site
+# add ruby and jekyll
+RUN apt-get install --no-install-recommends -y \
+    ruby-full \
+    build-essential \
+    zlib1g-dev \
+    ca-certificates \
+    curl \
+    wget \
+    gnupg \
+    python3 \
+    python3-dev \
+    pkg-config \
+    libssl-dev \
+    libgmp-dev \
+    ninja-build \
+    clang \
+    imagemagick \
+    xz-utils \
+    unzip \
+    git \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/
+    
+# Install additional packages that help building V8/libv8 (used by mini_racer)
+RUN apt-get update -y && apt-get install --no-install-recommends -y \
+    g++-multilib \
+    libc++-dev \
+    libc++abi-dev \
+    libgtk-3-dev \
+    libasound2-dev \
+    libx11-dev \
+    libx11-xcb-dev \
+    libv8-dev || true \
+    nodejs \
+    npm \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/
+# ENV GEM_HOME='root/gems' \
+#     PATH="root/gems/bin:${PATH}"
+RUN gem install jekyll bundler
 RUN mkdir /srv/jekyll
-
-# copy the Gemfile and Gemfile.lock to the image
-ADD Gemfile.lock /srv/jekyll
 ADD Gemfile /srv/jekyll
-
-# set the working directory
 WORKDIR /srv/jekyll
-
-# install jekyll and dependencies
-RUN gem install --no-document jekyll bundler
-RUN bundle install --no-cache
-
-EXPOSE 8080
-
-COPY bin/entry_point.sh /tmp/entry_point.sh
-
-# uncomment this if you are having this issue with the build:
-# /usr/local/bundle/gems/jekyll-4.3.4/lib/jekyll/site.rb:509:in `initialize': Permission denied @ rb_sysopen - /srv/jekyll/.jekyll-cache/.gitignore (Errno::EACCES)
-# set the ownership of the jekyll site directory to the non-root user
-# USER $USERNAME
-
-CMD ["/tmp/entry_point.sh"]
+RUN bundle install

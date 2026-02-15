@@ -1,47 +1,59 @@
 ---
 layout: about
-title: about
+title: About
 permalink: /
-subtitle: <strong>ECE PhD Candidate @ <a href='https://robotics.northeastern.edu/'>Northeastern's Institue For Experiential Robotics</a> <br> Controls and Planning | Verifiable ML | Robotics </strong>  <br> 
-
+# subtitle: <a href='https://marinerobotics.mit.edu/'>MIT CSAIL</a> / <a href='https://www.whoi.edu/'>WHOI</a>
+subtitle: <strong> Robotics | SLAM | Climate <br> Assistant Professor @ University of Michigan </strong>
 
 profile:
   align: right
-  image: prof_pic.jpg
-  image_circular:  # crops the image to make it circular
-  more_info: >
-    <p>EXP 720</p>
-    <p>815 Columbus Ave</p>
-    <p>Boston, MA 02115</p>
-    <p><a href="jung.le@northeastern.edu">jung.le@northeastern.edu</a></p>
-selected_papers: true # includes a list of papers marked as "selected={true}"
-social: true # includes social icons at the bottom of the page
+  # image: prof_pic.jpg
+  image: river_pavilion.jpg
+  image_circular: true # crops the image to make it circular
 
-announcements:
-  enabled: true # includes a list of news items
-  scrollable: true # adds a vertical scroll bar if there are more than 3 news items
-  limit: 5 # leave blank to include all the news in the `_news` folder
-
-latest_posts:
-  enabled: false
-  scrollable: true # adds a vertical scroll bar if there are more than 3 new posts items
-  limit: 3 # leave blank to include all the blog posts
+news: false  # includes a list of news items
+selected_papers: false # includes a list of papers marked as "selected={true}"
+social: true  # includes social icons at the bottom of the page
 ---
 
-## Hello World!
-I'm a current PhD Candidate at Northeastern University, where I am lucky enough to be advised by <a href="https://coe.northeastern.edu/people/everett-michael/"> Michael Everett </a> in the <a href="https://neu-autonomy.github.io/lab_website/"> NAIL </a> Lab. I generally am interested in 
-1. Safe-ifying our current robots, through both neural network verification and control-theoretic tools 
-1. Scalable, real-time algorithms for long-term/multi-robot SLAM
-1. Fun/cool optimization techniques (especially utilizing structure/geometry) 
+<span style="color:red;"> I am actively recruiting PhD students for the upcoming
+year. </span>
+See the information on my
+<a href="/join/">Join Us</a> page for how to reach out if you are interested in working with me.
+I also welcome inquiries from prospective postdocs, and
+University of Michigan undergrads.
 
-I also am drawn to anything with very pretty math (current obsession: Riemannian Optimization)!
+## A Bit About Me
 
+I am an (incoming) Assistant Professor to the University of Michigan.
+<!--  -->
+I received my PhD in 2025 from the Massachusetts
+Institute of Technology and the Woods Hole Oceanographic Institution <a
+href="https://mit.whoi.edu/"> Joint Program</a>, where I was lucky to work with
+<a href="https://www.csail.mit.edu/person/john-leonard">John Leonard</a>.
+<!--  -->
+I then spent a year at Northeastern University with
+<a href="https://www.ece.neu.edu/people/singh-hanumant">Hanu Singh</a> and
+<a href="https://www.ece.neu.edu/people/everett-michael">Michael Everett</a>
+on a broad set of topics in robot navigation and perception.
 
-Previously, I earned my B.S. in Aerospace Engineering from Purdue University, where, I among other things, was fortunate enough to work in the <a href="https://engineering.purdue.edu/AOL"> Autonomy and Optimization LaB </a> under <a href="https://engineering.purdue.edu/AAE/people/ptProfile?resource_id=243160"> Ran Dai </a> working on solving QCQPs for optimal planning and controls and the design of origami-inspired robots.
+**My research** develops algorithms and systems that enable robots to
+explore and monitor challenging environments, with a particular focus on
+underwater environments. We work on the tools that will allow
+future robots to autonomously study and understand the natural world.
 
-Feel free to drop me an email; I advise undergrad/masters students regularly, and additionally get nerd-sniped very easily! 
+### Honors and Awards
 
+- 2025 Robotics: Science and Systems Pioneer
+- 2024 Transactions on Robotics King-Sun Fu Best Paper Award
+- MathWorks Fellow
+- Woods Hole Next Wave Fellow
+- Undersea Technology Innovation Scholar
 
+### Roadmap for Climate-Relevant Robotics
 
+If you're interested in the future of robotics and how it can help us
+understand, mitigate, and adapt to climate change, check out this
+paper I was lucky to lead with a group of amazing colleagues!
 
-<!-- Link to your social media connections, too. This theme is set up to use [Font Awesome icons](https://fontawesome.com/) and [Academicons](https://jpswalsh.github.io/academicons/), like the ones below. Add your Facebook, Twitter, LinkedIn, Google Scholar, or just disable all of them. -->
+<a href="https://www.climate-robotics.org/">Roadmap for Climate-Relevant Robotics Research</a>.

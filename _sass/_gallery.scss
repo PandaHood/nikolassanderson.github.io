@@ -1,0 +1,31 @@
+/*******************************************************************************
+ * Gallery enhancements - minimal style matching site aesthetic
+ ******************************************************************************/
+
+/* Smooth scrolling for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Subtle hover effect for images - just a light underline on caption links */
+figure a:hover {
+  text-decoration: none;
+}
+
+/* Ensure images display properly in grid */
+.row img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

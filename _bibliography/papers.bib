@@ -1,94 +1,202 @@
-@article{jung2025practical,
-  title={Practical and Performant Enhancements for Maximization of Algebraic Connectivity},
-  author={Jung, Leonard and Papalia, Alan and Doherty, Kevin and Everett, Michael},
-  journal={arXiv preprint arXiv:2511.08694},
-  year={2025},
-  AUTHOR+an = {1=highlight},
-  Keywords = {preprint},
-  selected={true},
-  arxiv={2511.08694},
-  preview={MACPP_title.png}
+% journals
+@string{mit   = "The MIT Press, Cambridge, MA"}
+@string{auv = "IEEE/OES Autonomous Underwater Vehicles Symposium"}
+@string{cira = "IEEE Int. Sym. on Computational Intelligence on Robotics and Automation (CIRA)"}
+@string{ismar = "IEEE and ACM Intl. Sym. on Mixed and Augmented Reality (ISMAR)"}
+@string{iser  = "Intl. Sym. on Experimental Robotics (ISER)"}
+@string{ais = "Intl. Conf. on Autonomous and Intelligent Systems"}
+@string{ut = "Proc. of Int. Symp. of Underwater Technology"}
+@string{robio = "IEEE Intl. Conf. on Robotics and Biomimetics"}
+@string{icaps = "Proc. of Intl. Conf. on Automated Planning and Scheduling"}
+@string{ecmr = "European Conf. on Mobile Robotics (ECMR)"}
+@string{fusion = "Intl. Conf. on Information Fusion (FUSION)"}
+@string{siggraph = "SIGGRAPH"}
+@string{icpr  = "Intl. Conf. on Pattern Recognition (ICPR)"}
+@string{aaai  = "AAAI Conf. on Artificial Intelligence"}
+@string{ijcai = "Intl. Joint Conf. on Artificial Intelligence"}
+@string{accv  = "Asian Conf. on Computer Vision (ACCV)"}
+@string{cvpr  = "Proc. {IEEE} Int. Conf. Computer Vision and Pattern Recognition"}
+@string{uust  = "Proc. Int. Symp. on Unmanned Untethered Submersible Technology"
 }
-@article{estornell2025verification,
-  title={Verification of Visual Controllers via Compositional Geometric Transformations},
-  author={Estornell, Alexander and Jung, Leonard and Everett, Michael},
-  journal={arXiv preprint arXiv:2507.04523},
-  year={2025},
-  AUTHOR+an = {2=highlight},
-  Keywords = {preprint},
-  selected={true},
-  arxiv={2507.04523},
-  preview={VVC_arch.png}
-}
-@inproceedings{
-dong2025learning,
-title={Learning Smooth State-Dependent Traversability from Dense Point Clouds},
-author={Zihao Dong and Alan Papalia and Leonard Jung and Alenna Spiro and Philip R Osteen and Christa S. Robison and Michael Everett},
-booktitle={RSS 2025 Workshop on Resilient Off-road Autonomous Robotics},
-year={2025},
-url={https://openreview.net/forum?id=icCwJjkjCf},
-  AUTHOR+an = {3=highlight},
-  Keywords = {published},
-  arxiv={2506.04362}
-}
-@INPROCEEDINGS{11127666,
-  author={Dong, Zihao and Pflueger, Jeff and Jung, Leonard and Thorne, David and Osteen, Philip R. and Robison, Christa S. and Lopez, Brett T. and Everett, Michael},
-  booktitle={2025 IEEE International Conference on Robotics and Automation (ICRA)}, 
-  title={LiDAR Inertial Odometry and Mapping Using Learned Registration-Relevant Features}, 
-  year={2025},
-  volume={},
-  number={},
-  pages={359-366},
-  keywords={Location awareness;Training;Laser radar;Simultaneous localization and mapping;Accuracy;Memory management;Benchmark testing;Feature extraction;Real-time systems;Transient analysis},
-  doi={10.1109/ICRA55743.2025.11127666},
-  AUTHOR+an = {3=highlight},
-  Keywords = {published},
-  arxiv={2410.02961}
+@string{oceans= "Proc. of the IEEE/MTS OCEANS Conf. and Exhibition"}
+% conferences
+@string{bmvc  = "British Machine Vision Conf. (BMVC)"}
+@string{eccv  = "Eur. Conf. on Computer Vision (ECCV)"}
+@string{iccv  = "Intl. Conf. on Computer Vision (ICCV)"}
+@string{emav  = "European Micro Aerial Vehicle Conference"}
+@string{icar  = "IEEE Intl. Conf. on Advanced Robotics (ICAR)"}
+@string{rss   = "Robotics: Science and Systems (RSS)"}
+@string{isrr  = "Proc. of the Intl. Symp. of Robotics Research (ISRR)"}
+@string{iros  = "IEEE/RSJ Intl. Conf. on Intelligent Robots and Systems (IROS)"}
+@string{icra  = "IEEE Intl. Conf. on Robotics and Automation (ICRA)"}
+@string{wafr  = "Intl. Workshop on the Algorithmic Foundations of Robotics (WAFR)"}
+@string{tip   = "{IEEE} Trans. on Image Processing"}
+@string{isr   = "Intelligent Service Robotics"}
+@string{mtsj  = "Marine Technology Society Journal"}
+@string{tac   = "{IEEE} Trans. on Automatic Control"}
+@string{pami  = "{IEEE} Trans. Pattern Anal. Machine Intell."}
+@string{ram   = "{IEEE} Robotics \& Automation Magazine"}
+@string{cviu  = "Computer Vision and Image Understanding"}
+@string{jbe   = "{ASME} Journal of Basic Engineering"}
+@string{ijcv  = "International Journal of Computer Vision"}
+@string{joe   = "Journal of Oceanic Engineering"}
+@string{ac    = "{IEEE} Trans. on Automatic Control"}
+@string{ieee  = "Proc. of the IEEE"}
+@string{ar    = "Autonomous Robots"}
+@string{fsr   = "Field and Service Robotics"}
+% workshops
+@string{jfr   = "J. of Field Robotics"}
+@string{ras   = "J. of Robotics and Autonomous Systems"}
+@string{tra   = "{IEEE} Trans. Robotics and Automation"}
+@string{tro   = "{IEEE} Transactions on Robotics"}
+% publishers
+@string{ijrr  = "International Journal of Robotics Research"}
+
+@article{papalia2024overview,
+  abbr          = {preprint},
+  title         = {An Overview of the Burer-Monteiro Method for Certifiable Robot Perception},
+  author        = {Papalia, Alan and Tian, Yulun and Rosen, David M. and How, Jonathan P. and Leonard, John J.},
+  journal       = {arXiv preprint arXiv:2410.00117},
+  year          = {2024},
+  archiveprefix = {arXiv},
+  arxivid       = {2410.00117},
+  arxiv         = {2410.00117},
+  url           = {http://arxiv.org/abs/2410.00117},
+  bibtex_show   = {true},
+  selected      = {true},
+  preview       = {BM-method.png}
 }
 
-@article{estornell2025hybrid,
-  title={A Hybrid Framework for Efficient Koopman Operator Learning},
-  author={Estornell*, Alexander and Jung*, Leonard and Spiro*, Alenna and Sznaier, Mario and Everett, Michael},
-  journal={arXiv preprint arXiv:2504.18676},
-  year={2025},
-  AUTHOR+an = {2=highlight,equal;1=equal;3=equal},
-  Keywords = {accepted},
-  selected={true},
-  arxiv={2504.18676},
-  preview={HKOOP_arc.png}
-}
-@InProceedings{jung2025contingency,
-  title = 	 {Contingency Constrained Planning with MPPI within MPPI},
-  author =       {Jung, Leonard and Estornell, Alexander and Everett, Michael},
-  booktitle = 	 {Proceedings of the 7th Annual Learning for Dynamics \&amp; Control Conference},
-  pages = 	 {869--880},
-  year = 	 {2025},
-  editor = 	 {Ozay, Necmiye and Balzano, Laura and Panagou, Dimitra and Abate, Alessandro},
-  volume = 	 {283},
-  series = 	 {Proceedings of Machine Learning Research},
-  month = 	 {04--06 Jun},
-  publisher =    {PMLR},
-  pdf = 	 {https://raw.githubusercontent.com/mlresearch/v283/main/assets/jung25a/jung25a.pdf},
-  url = 	 {https://proceedings.mlr.press/v283/jung25a.html},
-  abstract = 	 {For safety, autonomous systems must be able to consider sudden changes and enact contingency plans appropriately. State-of-the-art methods currently find trajectories that balance between nominal and contingency behavior, or plan for a singular contingency plan; however, this does not guarantee that the resulting plan is safe for all time. To address this research gap, this paper presents Contingency-MPPI, a data-driven optimization-based strategy that embeds contingency planning inside a nominal planner. By learning to approximate the optimal contingency-constrained control sequence with adaptive importance sampling, the proposed method’s sampling efficiency is further improved with initializations from a lightweight path planner and trajectory optimizer. Finally, we present simulated and hardware experiments demonstrating our algorithm generating nominal and contingency plans in real time on a mobile robot.},
-  arxiv={2412.09777},
-  preview={CMPPI_problem_statement.png},
-  selected={true},
+@article{doherty2024mac,
+  abbr          = {preprint},
+  title         = {MAC: Maximizing Algebraic Connectivity for Graph Sparsification},
+  author        = {Doherty, Kevin and Papalia, Alan and Huang, Yewei and Rosen, David and Englot, Brendan and Leonard, John},
+  journal       = {arXiv preprint arXiv:2403.19879},
+  year          = {2024},
+  archiveprefix = {arXiv},
+  arxivid       = {2403.19879},
+  arxiv         = {2403.19879},
+  url           = {http://arxiv.org/abs/2403.19879},
+  bibtex_show   = {true}
 }
 
-@inproceedings{tanaka2023origami,
-  title={An Origami-Inspired Deployable Space Debris Collector},
-  author={Tanaka, Yuto and Anibha, Aditya Arjun and Jung, Leonard and Gul, Roha and Sun, Jeffrey and Dai, Ran},
-  booktitle={2023 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
-  pages={10757--10762},
-  year={2023},
-  organization={IEEE},
-  AUTHOR+an = {3=highlight},
-  Keywords = {published},
-  html={https://ieeexplore.ieee.org/document/10341589},
-  doi={10.1109/IROS55552.2023.10341589}
+@article{papalia24cora,
+  abbr          = {TRO},
+  author        = {Papalia, Alan and Fishberg, Andrew and O'Neill, Brendan W. and How, Jonathan P. and Rosen, David M. and Leonard, John J.},
+  journal       = {IEEE Transactions on Robotics},
+  title         = {Certifiably Correct Range-Aided SLAM},
+  year          = {2024},
+  volume        = {40},
+  number        = {},
+  pages         = {4265-4283},
+  keywords      = {Simultaneous localization and mapping;Robots;Optimization;Certification;Sensors;Manifolds;Extraterrestrial measurements;Certifiable perception;range-aided simultaneous localization and mapping (RA-SLAM);Riemannian Staircase;semidefinite programming;ultrawideband (UWB)},
+  url           = {http://arxiv.org/abs/2302.11614},
+  arxiv         = {2302.11614},
+  archiveprefix = {arXiv},
+  arxivid       = {2302.11614},
+  bibtex_show   = {true},
+  selected      = {true},
+  preview       = {Outfinite-equipment.png}
 }
 
+
+@inproceedings{papalia23icra,
+  abbr          = {ICRA},
+  title         = {SCORE: A Second-Order Conic Initialization for Range-Aided SLAM},
+  author        = {Papalia, Alan and Morales, Joseph and Doherty, Kevin J. and Rosen, David M. and Leonard, John J.},
+  booktitle     = icra,
+  archiveprefix = {arXiv},
+  arxivid       = {2210.03177},
+  url           = {http://arxiv.org/abs/2210.03177},
+  year          = {2023},
+  bibtex_show   = {true},
+  selected      = {true},
+  arxiv         = {2210.03177},
+  preview       = {SCORE.png}
+}
+
+@inproceedings{papalia22icra,
+  abbr          = {ICRA},
+  title         = {Prioritized Planning for Cooperative Range-Only Localization in Multi-Robot Networks},
+  author        = {Papalia, Alan and Thumma, Nicole and Leonard, John},
+  booktitle     = icra,
+  pages         = {10753--10759},
+  year          = {2022},
+  organization  = {IEEE},
+  archiveprefix = {arXiv},
+  url           = {http://arxiv.org/abs/2109.05132},
+  arxivid       = {2109.05132},
+  arxiv         = {2109.05132},
+  bibtex_show   = {true}
+}
+
+
+@article{huang22ral,
+  abbr          = {RAL},
+  title         = {Nested Sampling for Non-Gaussian Inference in SLAM Factor Graphs},
+  author        = {Huang, Qiangqiang and Papalia, Alan and Leonard, John J.},
+  journal       = {IEEE Robotics and Automation Letters},
+  volume        = {7},
+  number        = {4},
+  pages         = {9232--9239},
+  year          = {2022},
+  publisher     = {IEEE},
+  archiveprefix = {arXiv},
+  url           = {http://arxiv.org/abs/2109.10871},
+  arxivid       = {2109.10871},
+  arxiv         = {2109.10871},
+  bibtex_show   = {true}
+}
+
+@inproceedings{oneill22oceans,
+  abbr         = {OCEANS},
+  title        = {Loosely-Coupled Human-Robot Teams for Enhanced Undersea Operations},
+  author       = {O'Neill, Brendan W. and Pelletier, Jesse R. and Calvert, Samuel and Papalia, Alan and Leonard, John J. and Freitag, Lee and Gallimore, Eric},
+  booktitle    = oceans,
+  year         = {2022},
+  organization = {IEEE},
+  bibtex_show  = {true}
+}
+
+@article{clark21health,
+  abbr          = {CHASE},
+  title         = {Inter-mobile-device distance estimation using network localization algorithms for digital contact logging applications},
+  author        = {Clark, Lillian and Papalia, Alan and Carvalho, J{\^o}nata Tyska and Mastrostefano, Luca and Krishnamachari, Bhaskar},
+  journal       = {Smart Health},
+  volume        = {19},
+  pages         = {100168},
+  year          = {2021},
+  publisher     = {Elsevier},
+  archiveprefix = {arXiv},
+  arxivid       = {2007.10162},
+  url           = {http://arxiv.org/abs/2007.10162},
+  arxiv         = {2007.10162},
+  bibtex_show   = {true}
+}
+
+@inproceedings{papalia20auv,
+  abbr          = {AUV},
+  title         = {Network Localization Based Planning for Autonomous Underwater Vehicles with Inter-Vehicle Ranging},
+  author        = {Papalia, Alan and Leonard, John},
+  booktitle     = auv,
+  year          = {2020},
+  organization  = {IEEE},
+  archiveprefix = {arXiv},
+  arxivid       = {2010.02861},
+  url           = {http://arxiv.org/abs/2010.02861},
+  arxiv         = {2010.02861},
+  bibtex_show   = {true}
+}
+
+@inproceedings{tieppo22oceans,
+  abbr         = {OCEANS},
+  title        = {Submarine Cables as Precursors of Persistent Systems for Large Scale Oceans Monitoring and Autonomous Underwater Vehicles Operation},
+  author       = {Tieppo, Marcos and Pereira, Eduardo and Garc{\'i}a, Laura Gonz{\'a}lez and Rolim, Margarida and Castanho, Emanuel and Matos, An{\'i}bal and Silva, Ant{\'o}nio and Ferreira, Bruno and Pascoal, Maria and Almeida, Eduardo and Costa, Filipe and Zabel, Fred and Faria, Jo{\~a}o and Azevedo, Jos{\'e} and Alves, Jos{\'e} and Moutinho, Jos{\'e} and Gon{\c{c}}alves, Lu{\'i}s and Martins, Marcos and Cruz, Nuno and Abreu, Nuno and Silva, Pedro and Viegas, R{\'u}ben and Jesus, S{\'e}rgio and Chen, T{\^a}nia and Miranda, Tiago and Papalia, Alan and Hart, Douglas and Leonard, John and Haji, Maha and de Weck, Olivier and Godart, Peter and Lermusiaux, Pierre},
+  booktitle    = oceans,
+  year         = {2022},
+  organization = {IEEE},
+  bibtex_show  = {true}
+}
 
 
 

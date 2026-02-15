@@ -1,0 +1,193 @@
+---
+layout: default
+---
+<!-- _layouts/cv.html -->
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDF Viewer</title>
+  <style>
+    #pdf-viewer {
+      border: 1px solid #ddd;
+      margin: 20px auto;
+      width: 90%;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    #fallback {
+      display: none;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    canvas {
+      width: 100%;
+      height: auto;
+    }
+
+    #controls {
+      text-align: center;
+      margin: 10px 0;
+    }
+
+    #controls button {
+      margin: 0 5px;
+      padding: 5px 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+  .button {
+    background-color: #007bff; /* Blue */
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease-in-out;
+  }
+
+  .button:hover {
+    background-color: #0056b3; /* Darker Blue */
+    transform: translateY(-2px);
+  }
+
+  .button:active {
+    background-color: #004085; /* Even Darker Blue */
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .button:disabled {
+    background-color: #cccccc; /* Gray */
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+
+  </style>
+  <script src="{{ 'assets/js/pdfjs/pdf.js' | relative_url }}"></script>
+</head>
+
+<div class="post">
+  <header class="post-header">
+    <h1 class="post-title">
+      {{ page.title }}
+      {% if page.cv_pdf %}
+      <a href="{{ page.cv_pdf | prepend: 'assets/pdf/' | relative_url }}" target="_blank" rel="noopener noreferrer"
+        class="cv-link float-right">
+        <!-- Download PDF -->
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      {% endif %}
+    </h1>
+    <p class="post-description">{{ page.description }}</p>
+  </header>
+
+  {% if page.last_updated %}
+  <p class="text-muted">Last updated: {{ page.last_updated }}</p>
+  {% endif %}
+
+  {% if page.cv_pdf %}
+  <div id="pdf-viewer-container">
+    <div id="controls">
+      <button id="prev">Previous</button>
+      <span>Page: <span id="page-num"></span> / <span id="page-count"></span></span>
+      <button id="next">Next</button>
+    </div>
+    <div id="pdf-viewer"></div>
+    <div id="fallback">
+      <p>PDF embedding is not supported in this browser. <a
+          href="{{ page.cv_pdf | prepend: 'assets/pdf/' | relative_url }}" target="_blank">Click here to view the
+          PDF.</a></p>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const url = "{{ page.cv_pdf | prepend: 'assets/pdf/' | relative_url }}";
+      const pdfjsLib = window['pdfjs-dist/build/pdf'];
+
+      pdfjsLib.GlobalWorkerOptions.workerSrc = "{{ 'assets/js/pdfjs/pdf.worker.js' | relative_url }}";
+
+      let pdfDoc = null,
+        currentPage = 1,
+        pageCount = 0,
+        pageRendering = false,
+        pageNumPending = null;
+
+      const scale = 1.5;
+      const pdfViewer = document.getElementById('pdf-viewer');
+      const canvas = document.createElement('canvas');
+      const context = canvas.getContext('2d');
+      pdfViewer.appendChild(canvas);
+
+      // Load the PDF
+      pdfjsLib.getDocument(url).promise.then(pdf => {
+        pdfDoc = pdf;
+        pageCount = pdf.numPages;
+        document.getElementById('page-count').textContent = pageCount;
+        renderPage(currentPage);
+      }).catch(error => {
+        console.error("Error loading PDF:", error);
+        document.getElementById('fallback').style.display = 'block';
+      });
+
+      // Render a specific page
+      function renderPage(pageNum) {
+        pageRendering = true;
+
+        pdfDoc.getPage(pageNum).then(page => {
+          const viewport = page.getViewport({ scale });
+          canvas.width = viewport.width;
+          canvas.height = viewport.height;
+
+          const renderContext = {
+            canvasContext: context,
+            viewport: viewport,
+          };
+
+          const renderTask = page.render(renderContext);
+          renderTask.promise.then(() => {
+            pageRendering = false;
+            if (pageNumPending !== null) {
+              renderPage(pageNumPending);
+              pageNumPending = null;
+            }
+          });
+
+          document.getElementById('page-num').textContent = pageNum;
+        });
+      }
+
+      // Queue a page to render if one is already rendering
+      function queueRenderPage(pageNum) {
+        if (pageRendering) {
+          pageNumPending = pageNum;
+        } else {
+          renderPage(pageNum);
+        }
+      }
+
+      // Previous page
+      document.getElementById('prev').addEventListener('click', () => {
+        if (currentPage <= 1) return;
+        currentPage--;
+        queueRenderPage(currentPage);
+      });
+
+      // Next page
+      document.getElementById('next').addEventListener('click', () => {
+        if (currentPage >= pageCount) return;
+        currentPage++;
+        queueRenderPage(currentPage);
+      });
+    });
+  </script>
+  {% endif %}
+
+
+</div>
