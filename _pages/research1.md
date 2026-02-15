@@ -8,7 +8,7 @@ nav_order: 1
 **Date:** 2026-02-14  
 **Tags:** robotics, SLAM, factor-graphs, certifiable-estimation, SDP, optimization
 
-![Certifiable factor-graph pipeline](assets/img/new_imgs/certi-fgo.png)
+![Certifiable factor-graph pipeline](assets/img/certi-fgo.png)
 
 > **What this post is about:** The Certi-FGO paper asks a simple question: *can we keep the usability and scalability of factor graphs, but add a “this solution is globally optimal” certificate?*  
 > The answer is **yes**, by lifting the problem the right way **without destroying factor-graph sparsity**.
@@ -88,13 +88,7 @@ If the certificate fails, the algorithm increases the rank of the BM factorizati
 **This is a big practical win:** the method has a built-in, principled “try harder” knob (rank), rather than only heuristic restarts.
 
 ---
-
-## The paper’s overview figure (the story in one graphic)
-
-![Certi-FGO overview figure (paper)](./images/certi_fgo_page9.png)
-
-This figure is basically the paper’s narrative: optimize → verify → either certify or climb the staircase.
-
+![Plaza2](assets/img/Plaza2-CORA.gif)
 ---
 
 ## What’s the actual significance?
