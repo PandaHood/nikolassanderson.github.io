@@ -39,7 +39,11 @@ jobs:
       - name: Bundle install
         run: |
           bundle config set --local path 'vendor/bundle'
+          # Force gems to be installed for the current Ruby platform
+          bundle config set force_ruby_platform true
           bundle install --jobs 4 --retry 3
+          # Rebuild native extensions to ensure shared libs are present
+          bundle pristine --all || true
 
       - name: Build site
         env:
