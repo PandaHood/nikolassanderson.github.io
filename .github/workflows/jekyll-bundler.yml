@@ -18,6 +18,12 @@ jobs:
         with:
           ruby-version: '3.0'
 
+      - name: Ensure ruby3.0 symlink
+        run: |
+          if ! command -v ruby3.0 >/dev/null 2>&1; then
+            sudo ln -sf "$(which ruby)" /usr/bin/ruby3.0 || true
+          fi
+
       - name: Install system dependencies
         run: sudo apt-get update && sudo apt-get install -y imagemagick graphviz
 
