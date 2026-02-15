@@ -8,7 +8,7 @@ nav_order: 1
 **Date:** 2026-02-14  
 **Tags:** robotics, SLAM, factor-graphs, certifiable-estimation, SDP, optimization
 
-![Certifiable factor-graph pipeline](./images/factorgraph_certifiable_pipeline.png)
+![Certifiable factor-graph pipeline](assets/img/new_imgs/certi-fgo.png)
 
 > **What this post is about:** The Certi-FGO paper asks a simple question: *can we keep the usability and scalability of factor graphs, but add a “this solution is globally optimal” certificate?*  
 > The answer is **yes**, by lifting the problem the right way **without destroying factor-graph sparsity**.
