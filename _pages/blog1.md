@@ -7,7 +7,7 @@ nav_order: 4
 
 # Undergrad Research, From an Undergrad  
 
- {% include figure.html path="assets/img/F1-Fith.png" class="img-fluid rounded z-depth-1" %} 
+ {% include figure.html path="assets/img/F1-fith.png" class="img-fluid rounded z-depth-1" %} 
 <small>My research project was building an autonmous off-road car.</small>
 
 When people describe undergrad research, they usually emphasize the exciting parts. You get to work on real problems. You get access to tools and ideas that are not in most classes. You get to be around people doing work that actually pushes the field forward.
