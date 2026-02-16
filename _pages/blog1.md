@@ -37,6 +37,8 @@ In classes, structure is everywhere. You know what to learn, when it is due, and
 
 In research, it is normal to have weeks where you are not sure what the next step is. It is normal to feel like you are missing something obvious. It is normal to spend a long time chasing an idea that turns out to be wrong. The best way to get around this is to understand research progress can take shape in basically any form. Results are often the most visible to others and rewarding for oneself, but doing a deep literature review to undertsand current research gaps is important, designing productivity tools that will accelerate your work, and focusing your research question to be more precise and scientific. Everything you do is an investment and it is discoruaging to not always be at the final stage 
 
+ {% include figure.html path="assets/img/Research.jpg" class="img-fluid rounded z-depth-1" %} 
+<small>Research has so many different aspects of it, you are always making progress at one step in the process.</small>
 
 
 ### The subtle distinction that helped me
@@ -66,7 +68,7 @@ That does not mean tolerating confusion forever. It means learning how to sort u
 1. **Things I must understand right now to make progress**
 2. **Things I can temporarily hand wave while I keep moving**
 
-That skill makes you faster. If you treat every gap in your understanding as an emergency, you get stuck constantly. PIf you can figure out what you need to know and what you don't then you can use your time more efficently on things that will make your progress faster.
+That skill makes you faster. If you treat every gap in your understanding as an emergency, you get stuck constantly. If you can figure out what you need to know and what you don't then you can use your time more efficently on things that will make your progress faster.
 
 ---
 
