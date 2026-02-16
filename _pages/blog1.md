@@ -29,7 +29,7 @@ The simplest thing I have learned is also the most important
 **how much you put in is how much you get out**.
 
 Joining a lab is as much of a trial to see if you like them as it is for you. However, if their are things you want to acheive its up to you to figure them out.
----
+
 
 ## Freedom is the best part and the hardest part
 
@@ -123,7 +123,7 @@ A weekly meeting helps a lot, even if it is short. It forces you to summarize wh
 ### 5. Being in the lab matters
 A lot of work can be done remotely especially in my field, but being physically around your lab makes research easier as an undergrad.
 
-It reduces friction to ask questions. It helps you absorb how people think. It makes you feel like part of something bigger. I have basically become fully integrated into the lab being treated as a PhD student by all the current members. The professor takes my idea's seriously and when people see you do work it goes a long way. 
+It reduces friction to ask questions. It helps you absorb how people think. It makes you feel like part of something bigger. I have basically become fully integrated into the lab being treated as a PhD student by all the current members. The professor takes my idea's seriously and when people see you do work it goes a long way. You also make a lot of friends when in close proximity with eachother, I have close relationships with the other undergrads in my lab and great mentor-mentee relationship with the PhD students. These relationships are what make research easier when it gets hard. We are human after all! We love having a connection.
 
 
 
