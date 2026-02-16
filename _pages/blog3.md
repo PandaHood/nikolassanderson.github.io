@@ -38,7 +38,7 @@ This first year was also when I learned what it actually feels like to be on a t
 
 <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;">
   <iframe
-    src="https://drive.google.com/drive/folders/13wRsZOiqqSb_i09MZRt3ZDgESrJg0FmY?dmr=1&ec=wgc-drive-%5Bmodule%5D-goto"
+    src="https://drive.google.com/file/d/1FcpqU80zG6XUc6Yw8TTg1SnZ6xFwtIzl/view?usp=sharing"
     style="position:absolute;top:0;left:0;width:100%;height:100%;"
     frameborder="0"
     allow="autoplay"
@@ -66,7 +66,7 @@ It also taught me a practical truth about engineering teams:
 If it is your subsystem, you track the failure modes, you document what matters, and you make sure the rest of the team is never surprised at the last minute.
 
 ---
-{% include figure.html path="assets/img/nuwave-team.jpg" class="img-fluid rounded z-depth-1" %}
+{% include figure.html path="assets/img/ROV.png" class="img-fluid rounded z-depth-1" %}
 
 ## Year 3: Co electrical lead and float lead
 
@@ -129,7 +129,6 @@ At the end of the competition, we placed top 10 and took home the **Guts and Glo
 
 I think this anecdote shows how much this team means to me and to others. I am proud to be apart of a team of people just as dedicated who push me to be better everytime I step into the lab.
 
-<!-- Embedded LinkedIn post (paste into your Markdown file). -->
 <iframe
   src="https://www.linkedin.com/embed/feed/update/urn:li:activity:7353847124536565760"
   height="720"
@@ -138,6 +137,7 @@ I think this anecdote shows how much this team means to me and to others. I am p
   allowfullscreen
   title="Embedded LinkedIn post">
 </iframe>
+
 
 <script async src="https://platform.linkedin.com/in.js" type="text/javascript"></script>
 
