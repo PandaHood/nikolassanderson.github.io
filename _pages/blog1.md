@@ -37,7 +37,7 @@ In classes, structure is everywhere. You know what to learn, when it is due, and
 
 In research, it is normal to have weeks where you are not sure what the next step is. It is normal to feel like you are missing something obvious. It is normal to spend a long time chasing an idea that turns out to be wrong. The best way to get around this is to understand research progress can take shape in basically any form. Results are often the most visible to others and rewarding for oneself, but doing a deep literature review to undertsand current research gaps is important, designing productivity tools that will accelerate your work, and focusing your research question to be more precise and scientific. Everything you do is an investment and it is discoruaging to not always be at the final stage 
 
- {% include figure.html path="assets/img/Research.jpg" class="img-fluid rounded z-depth-1" %} 
+ {% include figure.html path="assets/img/Research.png" class="img-fluid rounded z-depth-1" %} 
 <small>Research has so many different aspects of it, you are always making progress at one step in the process.</small>
 
 
@@ -128,7 +128,8 @@ A lot of work can be done remotely especially in my field, but being physically 
 It reduces friction to ask questions. It helps you absorb how people think. It makes you feel like part of something bigger. I have basically become fully integrated into the lab being treated as a PhD student by all the current members. The professor takes my idea's seriously and when people see you do work it goes a long way. You also make a lot of friends when in close proximity with eachother, I have close relationships with the other undergrads in my lab and great mentor-mentee relationship with the PhD students. These relationships are what make research easier when it gets hard. We are human after all! We love having a connection.
 
 ---
-
+ {% include figure.html path="assets/img/Nik.png" class="img-fluid rounded z-depth-1" %} 
+<small>I was able to present my work at the 2025 IEEE International Conference on Robotics and Automation (ICRA) in Altanta Georgia.</small>
 ## Closing
 
 Undergrad research is not about already being an expert. It is about learning how to become one.
@@ -142,19 +143,16 @@ And eventually, you become the person who helps the next undergrad feel like the
 ## Some Extra Resources that have helped me
 
 ### Technical
-- **Optimization on Smooth Manifolds** — Nicolas Boumal  
-  https://www.nicolasboumal.net/book/
+- **[Optimization on Smooth Manifolds](https://www.nicolasboumal.net/book/)** — Nicolas Boumal  
 
-- **Numerical Optimization** — Jorge Nocedal and Stephen J. Wright  
-  https://www.math.uci.edu/~qnie/Publications/NumericalOptimization.pdf
 
-- **Factor Graphs for Robotic Perception** — Michael Kaess and Frank Dellaert  
-  *(add link if you want, since this one is hosted in a few places)*
+- **[Numerical Optimization](https://www.math.uci.edu/~qnie/Publications/NumericalOptimization.pdf)** — Jorge Nocedal and Stephen J. Wright  
+  
+
+- **[Factor Graphs for Robotic Perception](https://www.cs.cmu.edu/~kaess/pub/Dellaert17fnt.pdf)** — Michael Kaess and Frank Dellaert  
 
 ### General research and mindset
-- **The Genius Fallacy** — Jean Yang  
-  https://www.jeanyang.com/posts/genius-fallacy/
+- **[The Genius Fallacy](https://www.jeanyang.com/posts/genius-fallacy/)** — Jean Yang  
 
-- **Principles of Effective Research** — Michael Nielsen  
-  https://michaelnielsen.org/blog/principles-of-effective-research/
+- **[Principles of Effective Research](https://michaelnielsen.org/blog/principles-of-effective-research/)** — Michael Nielsen  
 
