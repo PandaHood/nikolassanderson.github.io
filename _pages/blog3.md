@@ -9,7 +9,6 @@ nav_order: 5
 # No Guts, No Glory: Leading a Marine Robotics Team as an Undergrad
 
 {% include figure.html path="assets/img/nuwave-team.jpg" class="img-fluid rounded z-depth-1" %}
-<small>One of the few constants in my time at Northeastern has been this marine robotics team.</small>
 
 One of the few constants in my time at Northeastern is this Marine Robotics team. It has taught me a lot technically, but more importantly it has shaped who I am as a person and how I want to lead professionally.
 
@@ -22,7 +21,6 @@ This post is my perspective as an undergrad who grew into leadership over a few 
 ## Why this team mattered so much to me
 
 Before marine robotics, I drifted between clubs. I liked engineering, but I did not have a place where commitment was the expectation. I wanted a team environment that felt closer to a sport. People depend on you, effort compounds, and the final outcome is bigger than any individual contribution.Marine robotics ended up being exactly that. On top of that I have found a core group of people who have pushed me to be better. 
----
 
 ## Year 1: Joining as an electrical member
 
@@ -38,13 +36,14 @@ This first year was also when I learned what it actually feels like to be on a t
 
 <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;">
   <iframe
-    src="https://drive.google.com/file/d/1FcpqU80zG6XUc6Yw8TTg1SnZ6xFwtIzl/view?usp=sharing"
+    src="https://drive.google.com/file/d/1FcpqU80zG6XUc6Yw8TTg1SnZ6xFwtIzl/preview"
     style="position:absolute;top:0;left:0;width:100%;height:100%;"
     frameborder="0"
     allow="autoplay"
     allowfullscreen>
   </iframe>
 </div>
+
 
 
 ---
@@ -161,7 +160,7 @@ When deadlines hit, your values show up in your behavior. I learned what I care 
 
 ---
 
-## Next year: becoming project lead (and what I want to protect)
+## Next year: becoming project lead
 
 This upcoming year I will be project lead of the entire club.
 
