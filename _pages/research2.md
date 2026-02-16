@@ -6,7 +6,7 @@ nav_order: 2
 ---
 
 
-**Date** 2026-02-14  
+**Date** February 12 2026  
 **Tags** robotics, SLAM, SfM, nonlinear least squares, variable projection, sparsity, separability
 
 {% include figure.html path="assets/img/Sparse.png" class="img-fluid rounded z-depth-1" %}

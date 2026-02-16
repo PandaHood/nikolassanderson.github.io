@@ -5,7 +5,7 @@ nav: true
 nav_order: 1
 ---
 
-**Date** February 14 2026  
+**Date** February 10 2026  
 **Tags** robotics, SLAM, factor graphs, certifiable estimation, SDP, optimization
 
 {% include figure.html path="assets/img/certi-fgo.png" class="img-fluid rounded z-depth-1" %}

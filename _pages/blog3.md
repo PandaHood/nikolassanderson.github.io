@@ -5,6 +5,7 @@ nav: true
 nav_order: 5
 ---
 
+**Date** February 16 2026  
 
 # No Guts, No Glory: Leading a Marine Robotics Team as an Undergrad
 

@@ -7,7 +7,7 @@ nav_order: 3
 
 # Online Certifiable Estimation with Cert CFS
 
-**Date** 2026-02-14  
+**Date** February 14 2026  
 **Tags** robotics, SLAM, factor graphs, online estimation, certifiable estimation, concurrent smoothing, SDP
 
 
