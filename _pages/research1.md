@@ -84,3 +84,13 @@ In autonomy settings where decisions are expensive or safety critical, that kind
 ## Closing thought
 
 What makes Certi FGO exciting is that it treats certifiability as a workflow feature that can integrate with the way roboticists already build and debug estimation systems. The story is that you do not need to abandon factor graphs to get global guarantees. You lift the problem carefully so that sparsity survives, you optimize efficiently in the lifted space, and when the relaxation is tight you get a checkable certificate that tells you the answer is globally optimal. That combination of practical structure and principled verification is exactly what makes the approach feel like a step toward estimation backends that are not only scalable, but also trustworthy.
+
+{% include figure.html path="assets/img/icra.PNG" class="img-fluid rounded z-depth-1" %}
+
+<iframe
+  src="https://dartmouthrobotics.github.io/icra-2025-robots-wild/spotlight-papers/icra-2025-robots-wild-16.pdf"
+  width="100%"
+  height="650"
+  style="border:1px solid #e5e7eb; border-radius:12px;"
+  loading="lazy">
+</iframe>
