@@ -101,7 +101,7 @@ There is a different kind of pressure that comes with knowing:
 
 It also forced me to make harder decisions. When deadlines get close, you have to decide who you can rely on to deliver and when you need to step in yourself. You have to decide who to bring to competition. You have to balance mentorship with risk. You want to give people chances, but you also cannot gamble the entire robot on a task that might not be finished.
 
-I did not love that part. But it taught me what professional leadership actually requires: making decisions that are not personal, even when they feel personal.
+I did not love that part. But it taught me what professional leadership actually requires which is making decisions that are not personal, even when they feel personal.
 
 ---
 
@@ -123,20 +123,19 @@ It was not perfect. But it was resilient. And that is the point.
 
 At the end of the competition, we placed top 10 and took home the **Guts and Glory** award for the resilience we showed. I could not be prouder.
 
-{% include figure.html path="assets/img/guts-and-glory.jpg" class="img-fluid rounded z-depth-1" %}
-<small>No Guts, No Glory means staying calm when everything breaks and still finding a way to execute.</small>
+<!-- Embedded LinkedIn post (paste into your Markdown file). -->
+<iframe
+  src="https://www.linkedin.com/embed/feed/update/urn:li:activity:7353847124536565760"
+  height="720"
+  width="504"
+  frameborder="0"
+  allowfullscreen
+  title="Embedded LinkedIn post">
+</iframe>
 
----
+<script async src="https://platform.linkedin.com/in.js" type="text/javascript"></script>
 
-## What made this year the most meaningful
 
-I have been part of MATE for the past eight years. I got my start in high school thanks to Paul McGuinness on Chromis Robotics, and eventually I started the NUWave team at Northeastern.
-
-Before I go any further, I want to say a massive thank you to **Dr. Tom Consi** for meeting with me almost every week to talk about the team and for supporting the NURobotics club as a whole over the past four years. He helped build me into the person I am today.
-
-There have been years that were less stressful or more hilarious, but this year was the most meaningful for me because the team truly understood what the competition is about. Collaboration. Camaraderie. The belief that these skills can one day be used to change the world for the better.
-
-I was moved by team members telling me how this team changed their lives, and I wanted them to know they changed mine too.
 
 ---
 
@@ -160,41 +159,11 @@ When deadlines hit, your values show up in your behavior. I learned what I care 
 
 This upcoming year I will be project lead of the entire club.
 
-I never thought I would get to this point, and I never saw myself as a leader. It just kind of happened this way. I grew into someone both technically capable and leadership capable through repetition and responsibility.
+I never thought I would get to this point, and I never saw myself as a leader. It just kind of happened this way. I grew into someone both technically capable and leadership capable.
 
 What I care about most now is keeping the culture that inspired my cohort and will keep inspiring the younger members.
 
 I have seen how this club has influenced people’s careers. Many teammates now want to work in marine robotics or engineering because of what they experienced here. As a senior member of the team, I have had a lot of fun. Now, as the person in charge, I want to make sure we keep that spark alive.
-
----
-
-## Embedded media (because this is a blog)
-
-### Video highlight
-Replace `VIDEO_ID` with your YouTube video id (pool test, quals video, or competition highlight).
-
-<iframe width="560" height="315"
-src="https://www.youtube.com/embed/VIDEO_ID"
-title="NUWave MATE ROV highlight"
-frameborder="0"
-allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-allowfullscreen>
-</iframe>
-
-### Embedded social media
-Replace the link with your post (X/Twitter example shown below).
-
-<blockquote class="twitter-tweet">
-  <a href="https://twitter.com/USERNAME/status/POST_ID">Loading…</a>
-</blockquote>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-
----
-
-## Quick links
-- [MATE ROV Competition](https://materovcompetition.org/)
-- [Blue Robotics](https://bluerobotics.com/)
-- [NURobotics at Northeastern](https://web.northeastern.edu/nurobotics/)  
 
 ---
 
