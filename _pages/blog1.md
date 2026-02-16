@@ -6,10 +6,9 @@ nav_order: 4
 ---
 
 # Undergrad Research, From an Undergrad  
-*A real view of the freedom, the confusion, and the payoff*
 
-![Notebook beside a laptop with code running and a messy desk](assets/img/undergrad_research_real.jpg)  
-<small>Swap this with a photo of your lab notebook, a screenshot of your terminal, or a candid “debugging at 1am” moment.</small>
+![Notebook beside a laptop with code running and a messy desk](assets/img/F1-fith.jpg)  
+<small>My research project was building an autonmous off-road car.</small>
 
 When people describe undergrad research, they usually emphasize the exciting parts. You get to work on real problems. You get access to tools and ideas that are not in most classes. You get to be around people doing work that actually pushes the field forward.
 
@@ -27,22 +26,21 @@ This post is my perspective as an undergrad researcher for other undergrads who 
 ## You get out what you put in
 
 The simplest thing I have learned is also the most important  
-**how much you put in is how much you get out**
+**how much you put in is how much you get out**.
 
-When first joining a lab it can feel overwelhming and 
-
+Joining a lab is as much of a trial to see if you like them as it is for you. However, if their are things you want to acheive its up to you to figure them out.
 ---
 
 ## Freedom is the best part and the hardest part
 
-In classes, structure is everywhere. You know what to learn, when it is due, and what “done” looks like. However research is different
+In classes, structure is everywhere. You know what to learn, when it is due, and what “done” looks like. However research is different.
 
-In research, it is normal to have weeks where you are not sure what the next step is. It is normal to feel like you are missing something obvious. It is normal to spend a long time chasing an idea that turns out to be wrong.
+In research, it is normal to have weeks where you are not sure what the next step is. It is normal to feel like you are missing something obvious. It is normal to spend a long time chasing an idea that turns out to be wrong. The best way to get around this is to understand research progress can take shape in basically any form. Results are often the most visible to others and rewarding for oneself, but doing a deep literature review to undertsand current research gaps is important, designing productivity tools that will accelerate your work, and focusing your research question to be more precise and scientific. Everything you do is an investment and it is discoruaging to not always be at the final stage 
 
 
 
 ### The subtle distinction that helped me
-You are not alone in research. People will help you.  
+You are not alone in research. People will help you and importanlty want you to succeed.  
 But you are still responsible for making your work move.
 
 That means  
@@ -53,22 +51,13 @@ That means
 
 This is not because mentors do not care. It is because research groups are busy and the default mode is not hand holding. You have to create the structure you need.
 
-I think the best piece of advice that resonates with me (not even research specific advice) is from [Barack Obama] where he said "Just learn how to get stuff done". 
-<iframe width="560" height="315"
-  src="https://www.youtube.com/watch?v=YNY4UFaHbP4"
-  title=""
-  frameborder="0"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-  allowfullscreen>
-</iframe>
-
-If you can learn this you will succeed in anything -- even research!
+I think the best piece of advice that resonates with me (not even research specific advice) is from Presidant [Barack Obama](https://www.youtube.com/watch?v=YNY4UFaHbP4) where he said "Just learn how to get stuff done". If you can learn this you will succeed in anything -- even research!
 
 ---
 
 ## Become comfortable being uncomfortable
 
-One of the hardest parts of research is emotional, not technical. It does not feel good to not know the answer. And research is basically choosing to not know the answer on purpose.
+One of the hardest parts of research is not a technical one and that i not knowing the answer. That doesn't feel good but in research we activly choose to not know the answer on purpose.
 
 The only way I have found to deal with that is to practice being uncomfortable without panicking.
 
@@ -77,15 +66,13 @@ That does not mean tolerating confusion forever. It means learning how to sort u
 1. **Things I must understand right now to make progress**
 2. **Things I can temporarily hand wave while I keep moving**
 
-That skill makes you faster. If you treat every gap in your understanding as an emergency, you get stuck constantly. If you treat every gap as irrelevant, you build on sand. Progress is learning what matters *today*.
+That skill makes you faster. If you treat every gap in your understanding as an emergency, you get stuck constantly. PIf you can figure out what you need to know and what you don't then you can use your time more efficently on things that will make your progress faster.
 
 ---
 
 ## What mentorship feels like when it works
 
-As an undergrad, one of the most motivating experiences is being treated like your ideas matter.
-
-Some of my mentors treated me like a peer in the best sense  
+As an undergrad, one of the most motivating experiences is being treated like your ideas matter. It funnily this came from the feeling of not being afraid of my mentors.This is becasue my mentors treated me like a peer in the best sense  
 not because I had the same expertise, but because they took my questions seriously and respected my attempts. 
 I think that is what good mentorship looks like from the undergrad side
 
@@ -95,18 +82,7 @@ I think that is what good mentorship looks like from the undergrad side
 * Your questions are welcomed  
 * You are pushed, but not dismissed 
 
-
----
-
-## It is okay to be uncertain about your path
-
-I did not start in robotics. My path shifted during undergrad, and that was only possible because people around me were willing to support me while I figured it out.
-
-If you are reading this and you are not sure what you want to do long term, that is normal.
-
-You do not need to be certain on day one. You just need to be committed to genuinely finding out.
-
-That means showing up consistently, putting real time in, and being honest with yourself about whether you like the process. If you end up staying, great. If you end up pivoting, also great. Either way, you will leave with skills and perspective that transfer.
+There are 2 great blog posts from a PhD student at MIT CSAIL from [Davis Blalock](https://dblalock.github.io/how-to-undergrad-research/) and Prof. [Rose Wang](https://rosewang2008.github.io/blog/2021/01/03/undergrad-research-advice.html) who give a great perspective on undergrad research from a mentors perspective.
 
 ---
 
@@ -149,7 +125,6 @@ A lot of work can be done remotely especially in my field, but being physically 
 
 It reduces friction to ask questions. It helps you absorb how people think. It makes you feel like part of something bigger. I have basically become fully integrated into the lab being treated as a PhD student by all the current members. The professor takes my idea's seriously and when people see you do work it goes a long way. 
 
----
 
 
 ---

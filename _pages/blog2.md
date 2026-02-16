@@ -1,6 +1,6 @@
 ---
 layout: page
 title: Books and Resources
-nav: true
+nav: false
 nav_order: 5
 ---
