@@ -21,17 +21,10 @@ This post is my perspective as an undergrad who grew into leadership over a few 
 
 ## Why this team mattered so much to me
 
-Before marine robotics, I drifted between clubs. I liked engineering, but I did not have a place where commitment was the expectation. I wanted a team environment that felt closer to a sport: people depend on you, effort compounds, and the final outcome is bigger than any individual contribution.
-
-Marine robotics ended up being exactly that.
-
-The robot is a forcing function. It is not a hypothetical assignment. Water is a real test harness. The pool does not care about your intentions. The competition does not care how late you stayed in the lab. If your connector is not sealed, it will fail. If your wiring is messy, it becomes a failure mode. If your system has a single point of failure, you will eventually find out where it is.
-
-That reality is stressful, but it is also what makes this team meaningful.
-
+Before marine robotics, I drifted between clubs. I liked engineering, but I did not have a place where commitment was the expectation. I wanted a team environment that felt closer to a sport. People depend on you, effort compounds, and the final outcome is bigger than any individual contribution.Marine robotics ended up being exactly that. On top of that I have found a core group of people who have pushed me to be better. 
 ---
 
-## Year 1: joining as an electrical member (Spring 2023)
+## Year 1: Joining as an electrical member
 
 I joined marine robotics as an electrical team member at the end of the spring semester of 2023. I was new, and I honestly just wanted to be useful.
 
@@ -43,12 +36,20 @@ Small tasks finished on time matter. Showing up matters. Communicating clearly m
 
 This first year was also when I learned what it actually feels like to be on a team. Not just joining a group chat, but being part of a crew that is building one system together, with one shared deadline.
 
-{% include figure.html path="assets/img/quals-video.jpg" class="img-fluid rounded z-depth-1" %}
-<small>Early contributions are not always flashy, but they are how you build momentum and trust.</small>
+<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;">
+  <iframe
+    src="https://drive.google.com/drive/folders/13wRsZOiqqSb_i09MZRt3ZDgESrJg0FmY?dmr=1&ec=wgc-drive-%5Bmodule%5D-goto"
+    style="position:absolute;top:0;left:0;width:100%;height:100%;"
+    frameborder="0"
+    allow="autoplay"
+    allowfullscreen>
+  </iframe>
+</div>
+
 
 ---
 
-## Year 2: building the buoyancy controlled float
+## Year 2: Building the buoyancy controlled float
 
 The next year I was given more responsibility: designing a **buoyancy controlled float**.
 
@@ -65,8 +66,9 @@ It also taught me a practical truth about engineering teams:
 If it is your subsystem, you track the failure modes, you document what matters, and you make sure the rest of the team is never surprised at the last minute.
 
 ---
+{% include figure.html path="assets/img/nuwave-team.jpg" class="img-fluid rounded z-depth-1" %}
 
-## Year 3: co electrical lead and float lead
+## Year 3: Co electrical lead and float lead
 
 The following year I became co electrical lead and float lead. This was the transition from “doing work” to “directing effort.”
 
@@ -91,7 +93,7 @@ A good plan is not enough. You need a plan that fits the reality of student sche
 
 ---
 
-## Year 4: sole electrical lead (and becoming a single point of failure)
+## Year 4: Sole electrical lead
 
 This year I became sole electrical lead. I designed the PCB from the ground up and became responsible for one of our robot’s core systems.
 
@@ -104,10 +106,11 @@ It also forced me to make harder decisions. When deadlines get close, you have t
 I did not love that part. But it taught me what professional leadership actually requires which is making decisions that are not personal, even when they feel personal.
 
 ---
+{% include figure.html path="assets/img/action.PNG" class="img-fluid rounded z-depth-1" %}
 
 ## Competition: the week that tested everything
 
-Leaving last year’s MATE ROV Competition, the team was fueled by a competitive fire I had not seen before. We embarked on one of the most ambitious engineering overhauls I have ever seen attempted for this competition. We developed an entirely new ROV frame, two versions of custom PCBs, and an updated buoyancy controlled float design. To make it all happen, I watched so many members of the team step up. Through long nights and relentless iteration, the robot came together into something I was genuinely proud of.
+Leaving the 2024 MATE ROV Competition, the team was fueled by a competitive fire I had not seen before. We embarked on one of the most ambitious engineering overhauls I have ever seen attempted for the 2025 competition. We developed an entirely new ROV frame, two versions of custom PCBs, and an updated buoyancy controlled float design.
 
 That is not to say everything went right.
 
@@ -121,7 +124,10 @@ The second run did not go perfectly either. We aimed for ambitious tasks early b
 
 It was not perfect. But it was resilient. And that is the point.
 
-At the end of the competition, we placed top 10 and took home the **Guts and Glory** award for the resilience we showed. I could not be prouder.
+At the end of the competition, we placed top 10 and took home the **Guts and Glory** award for the resilience we showed. 
+
+
+I think this anecdote shows how much this team means to me and to others. I am proud to be apart of a team of people just as dedicated who push me to be better everytime I step into the lab.
 
 <!-- Embedded LinkedIn post (paste into your Markdown file). -->
 <iframe
