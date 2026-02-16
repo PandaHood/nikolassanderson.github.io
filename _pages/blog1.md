@@ -7,7 +7,7 @@ nav_order: 4
 
 # Undergrad Research, From an Undergrad  
 
- {% include figure.html path="assets/img/F1-fith.png" class="img-fluid rounded z-depth-1" %} 
+ {% include figure.html path="assets/img/F1-fith.jpg" class="img-fluid rounded z-depth-1" %} 
 <small>My research project was building an autonmous off-road car.</small>
 
 When people describe undergrad research, they usually emphasize the exciting parts. You get to work on real problems. You get access to tools and ideas that are not in most classes. You get to be around people doing work that actually pushes the field forward.
@@ -125,8 +125,6 @@ A lot of work can be done remotely especially in my field, but being physically 
 
 It reduces friction to ask questions. It helps you absorb how people think. It makes you feel like part of something bigger. I have basically become fully integrated into the lab being treated as a PhD student by all the current members. The professor takes my idea's seriously and when people see you do work it goes a long way. You also make a lot of friends when in close proximity with eachother, I have close relationships with the other undergrads in my lab and great mentor-mentee relationship with the PhD students. These relationships are what make research easier when it gets hard. We are human after all! We love having a connection.
 
-
-
 ---
 
 ## Closing
@@ -138,3 +136,23 @@ You will feel lost sometimes. You will be unsure whether you are doing things co
 If you show up consistently, put real effort in, ask for feedback, and learn to operate while uncertain, the freedom that felt scary at the start becomes the reason research is so rewarding.
 
 And eventually, you become the person who helps the next undergrad feel like they belong.
+
+## Some Extra Resources that have helped me
+
+### Technical
+- **Optimization on Smooth Manifolds** — Nicolas Boumal  
+  https://www.nicolasboumal.net/book/
+
+- **Numerical Optimization** — Jorge Nocedal and Stephen J. Wright  
+  https://www.math.uci.edu/~qnie/Publications/NumericalOptimization.pdf
+
+- **Factor Graphs for Robotic Perception** — Michael Kaess and Frank Dellaert  
+  *(add link if you want, since this one is hosted in a few places)*
+
+### General research and mindset
+- **The Genius Fallacy** — Jean Yang  
+  https://www.jeanyang.com/posts/genius-fallacy/
+
+- **Principles of Effective Research** — Michael Nielsen  
+  https://michaelnielsen.org/blog/principles-of-effective-research/
+
