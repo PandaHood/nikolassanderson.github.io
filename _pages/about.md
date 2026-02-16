@@ -8,8 +8,8 @@ subtitle: <strong> Building Robots to Explore </strong>
 profile:
   align: right
   # image: prof_pic.jpg
-  image: logo.png
-  image_circular: false # crops the image to make it circular
+  image: Robot2.png
+  image_circular: true # crops the image to make it circular
 
 news: false  # includes a list of news items
 selected_papers: false # includes a list of papers marked as "selected={true}"
