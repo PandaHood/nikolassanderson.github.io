@@ -36,3 +36,14 @@ In my freetime I enjoy playing soccer, running, skiing, videogames (strategy, si
 - Tau Beta Phi Engineering Honors Society
 - PEAK Ascent Award
 
+## Fun Robot Data Collection
+<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;">
+  <iframe
+    src="https://drive.google.com/file/d/1_6XV91iOY-Zcwu08Fxji7fiDxKnLNI90/preview"
+    style="position:absolute;top:0;left:0;width:100%;height:100%;"
+    frameborder="0"
+    allow="autoplay"
+    allowfullscreen
+    title="Embedded Drive file">
+  </iframe>
+</div>
