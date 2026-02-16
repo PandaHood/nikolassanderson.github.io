@@ -53,7 +53,21 @@ That means
 
 This is not because mentors do not care. It is because research groups are busy and the default mode is not hand holding. You have to create the structure you need.
 
-I think the best piece of advice that resonates with me (not even research specific advice) is from Presidant [Barack Obama](https://www.youtube.com/watch?v=YNY4UFaHbP4) where he said "Just learn how to get stuff done". If you can learn this you will succeed in anything -- even research!
+I think the best piece of advice that resonates with me (not even research specific advice) is from fomer President Barack Obama where he said "Just learn how to get stuff done". If you can learn this you will succeed in anything -- even research!
+
+https://www.linkedin.com/videos/juliensmith_in-2023-barack-obama-shared-the-best-piece-activity-7307370135969751041-WZvk/
+
+<iframe
+  src="https://www.linkedin.com/videos/juliensmith_in-2023-barack-obama-shared-the-best-piece-activity-7307370135969751041-WZvk/"
+  height="720"
+  width="504"
+  frameborder="0"
+  allowfullscreen
+  title="Embedded LinkedIn post">
+</iframe>
+
+
+<script async src="https://platform.linkedin.com/in.js" type="text/javascript"></script>
 
 ---
 

@@ -5,115 +5,82 @@ nav: true
 nav_order: 1
 ---
 
-**Date:** 2026-02-14  
-**Tags:** robotics, SLAM, factor-graphs, certifiable-estimation, SDP, optimization
+**Date** February 14 2026  
+**Tags** robotics, SLAM, factor graphs, certifiable estimation, SDP, optimization
 
- {% include figure.html path="assets/img/certi-fgo.png" class="img-fluid rounded z-depth-1" %} 
-> **What this post is about:** The Certi-FGO paper asks a simple question: *can we keep the usability and scalability of factor graphs, but add a “this solution is globally optimal” certificate?*  
-> The answer is **yes**, by lifting the problem the right way **without destroying factor-graph sparsity**.
+{% include figure.html path="assets/img/certi-fgo.png" class="img-fluid rounded z-depth-1" %}
 
----
+> **What this post is about**  
+> The Certi FGO paper asks a simple question. Can we keep the usability and scalability of factor graphs while also gaining a reliable way to say that an answer is not just good, but truly the best possible answer. The main takeaway is that we can, as long as we lift the problem in a way that respects sparsity instead of collapsing everything into one huge dense optimization.
 
 ## Why this matters
 
-Factor graphs are the standard tool for SLAM and state estimation because they scale: each measurement becomes a small factor, sparsity falls out naturally, and we can solve huge problems quickly.
+Factor graphs are the standard tool for SLAM and state estimation because they naturally match how sensing works in robotics. Each measurement touches only a small part of the state, so each factor stays local, and the full problem ends up sparse even when the graph is very large. That sparsity is not just a mathematical detail, it is the reason we can solve problems with thousands or millions of variables using practical computation and memory.
 
-But the downside is equally familiar: most solvers we use are **local**. They converge to a nearby stationary point. When the problem is well-conditioned and initialization is good, that’s fine. When it isn’t—symmetries, poor initialization, ambiguous data association, multi-robot alignment—local solvers can converge to the wrong answer and still look “confident.”
+At the same time, most of the solvers we rely on are local methods that behave well only when the landscape is kind. If the initialization is strong and the problem is well conditioned, local optimization is fast and accurate and usually good enough. But the situations where robotics gets interesting are exactly the situations where the landscape stops being kind, and local methods can converge to the wrong answer while still producing residuals that look plausible.
 
-The paper’s core motivation is to add a missing capability:
+When that happens the system can fool itself, especially in cases with symmetries, ambiguous associations, weak excitation, or multi robot alignment where different configurations explain the data nearly equally well. A local solver can lock into a nearby stationary point and the rest of the pipeline may treat it as truth. This is why the paper pushes for a missing capability that is more than just a better optimizer.
 
-- Not just “here is a solution,” but **“here is a certificate that this solution is globally optimal.”**
-
-That certificate changes how you can build systems. It gives you a principled *trust signal* you can use downstream (planning, mapping QA, loop-closure validation, multi-robot alignment gates).
-
----
+The missing capability is a certificate that can be checked after the fact and trusted without hand waving. Instead of only returning an estimate, the backend returns an estimate plus a verifiable signal that this estimate is globally optimal for the stated problem. That signal is valuable because it can be used as a decision gate for downstream modules that need to know whether the map is trustworthy before planning, whether loop closures are consistent before accepting them, or whether a multi robot alignment step should be committed to the shared map.
 
 ## The usual route to certificates
 
-A common way to get certifiability is to form a **convex relaxation** of the original nonconvex estimation problem (often a QCQP) as a **semidefinite program (SDP)**. If the relaxation is tight, the SDP solution corresponds to the global optimum of the original problem—so you’re done, with proof.
+A standard path to certifiability is to rewrite the estimation problem in a form that exposes its nonconvex structure, often as a quadratically constrained quadratic program. Then you build a convex relaxation of that problem as a semidefinite program. If the relaxation is tight, the solution of the semidefinite program encodes the global optimum of the original nonconvex problem, and the tightness itself provides the proof you wanted.
 
-The obstacle: generic SDP solvers don’t scale well for large robotics graphs. If “certifiable” requires solving a giant dense SDP, it stays a theory tool, not a practical backend.
+This is a clean story on paper, and it has led to a lot of insight in certifiable estimation. The catch is that generic semidefinite programming can be brutally expensive when the lifted matrix is large, because the lifted variable is a matrix whose size grows with the number of original variables. In robotics graphs that means the naive approach quickly becomes too large to be a practical backend.
 
-So the paper’s question becomes more specific:
-
-> Can we get the benefits of an SDP relaxation **without giving up factor graph structure**?
-
----
+So the real question is not whether semidefinite relaxations can certify things, because they can. The real question is whether we can get the same certification power without paying the dense cost that usually comes with lifting. In other words, can we keep the factor graph scaling story while still accessing the convex relaxation and its certificate.
 
 ## The key idea
 
-The big insight is that the factor graph’s structure can survive the two transformations that usually scare people:
+The key insight in the paper is that lifting does not have to destroy structure if you do it with the factor graph in mind. The fear people often have is that once you lift, every variable interacts with every other variable, and sparsity disappears. But the factor graph tells you exactly which variables should interact, and the paper shows how to build the lifted representation so that the interaction pattern remains local.
 
-1. **Shor’s relaxation (lifting)**: replaces products of variables with a lifted matrix representation.
-2. **Burer–Monteiro factorization (BM)**: represents that lifted matrix as a low-rank product, turning the SDP into a (structured) nonconvex problem on a manifold.
+Two ideas make this work. The first is Shor style lifting, which replaces products of variables with entries of a lifted matrix representation. The second is the Burer Monteiro factorization, which represents that lifted matrix as a low rank product, turning the convex semidefinite program into a structured nonconvex problem over a manifold.
 
-Here’s the punchline in plain terms:
+What matters is that this nonconvex problem is not a random dense thing. It can be written as a lifted factor graph where each factor still involves only a small neighborhood, much like the original graph. The variables look different because they live on lifted manifolds, but the adjacency pattern still mirrors the original sensing pattern. This is the heart of why the approach can scale, because it preserves the same kind of locality that makes standard factor graph solvers efficient.
 
-- **Lifting changes what the variables look like**, but it doesn’t have to change *which variables interact*.
-- If the original factor graph only couples small neighborhoods (like pose pairs), the lifted version can be built so that it *still* couples only those neighborhoods.
+Once you accept that, the whole idea of certifiability shifts from being a separate solver stack to being something that can live inside the same graph based workflow. You can still talk about building factors, keeping sparsity, and running iterative optimization, while also keeping the door open to a global optimality certificate when the relaxation is tight.
 
-That means we can build a **lifted factor graph** that looks and behaves like a normal factor graph:
-- small factors
-- sparse structure
-- scalable computation
+## What the Certi FGO pipeline does
 
-…but with the ability to produce a **certificate**.
+### Step 1 Build the lifted factor graph
 
-This is why the paper is significant: it reframes certifiable estimation as something that can live inside the factor-graph workflow, rather than replacing it with an entirely different solver stack.
+You start from a standard estimation problem with poses and measurements, and you rewrite it into a quadratic form that is suitable for relaxation. Then you apply lifting so that the objective and constraints become linear in a lifted matrix variable. After that you apply a low rank factorization so that the lifted matrix is represented implicitly by smaller factors, which becomes the set of variables you actually optimize.
 
----
+In many robotics problems, the rotation related parts of the state naturally map to orthonormality constraints, and in the lifted world those become blocks on Stiefel type manifolds. That sounds abstract, but the operational point is simple. Instead of optimizing directly over rotations and translations, you optimize over structured blocks that encode them in a way that lines up with the relaxed semidefinite program. Each factor in the graph becomes a lifted factor that still only touches the corresponding local blocks, so the graph remains sparse.
 
-## What the Certi-FGO pipeline does
+### Step 2 Optimize locally in the lifted space
 
-The paper lays out a practical loop that looks like this:
+Once the lifted graph is built, you run a local solver, but now it is a solver that respects the geometry of the lifted variables. The paper uses Riemannian optimization, which you can think of as a version of iterative descent or Gauss Newton that takes steps along the manifold rather than stepping through Euclidean space and projecting after the fact.
 
-### Step 1 — Build the lifted factor graph
-You start with your usual estimation problem (poses, relative measurements, maybe landmarks) and rewrite it as a QCQP. Then you lift it (Shor relaxation) and apply BM factorization so the variables become *lifted blocks*.
+This step feels familiar if you have ever run a local optimizer on a factor graph, because you still accumulate local contributions and exploit sparsity. The difference is that the state lives on a product of manifolds defined by the lifted constraints, and the algorithm uses that structure to compute gradients, retractions, and updates in a consistent way. The benefit is that you are now searching in a space that is directly tied to the semidefinite relaxation, which is what makes certification possible afterward.
 
-In practice, rotation-like variables become **Stiefel-manifold blocks** (tall orthonormal matrices), and the factors become lifted versions of familiar residuals (same “two-node” structure, different variable type).
+### Step 3 Certify
 
-### Step 2 — Optimize locally *in the lifted space*
-You run a local solver, but now it’s **Riemannian optimization** over the product of these lifted manifolds. This step is conceptually similar to “run Gauss–Newton on the graph,” just on different geometry.
+After you reach a stationary point in the lifted space, you compute a certificate object that tells you whether the point corresponds to a globally optimal solution of the original nonconvex problem. In practical terms this involves constructing a matrix whose positive semidefiniteness is the condition for global optimality under the relaxation. You then check its smallest eigenvalue, or an equivalent condition, to decide whether the certificate passes.
 
-### Step 3 — Certify
-After optimizing, you compute a certificate object (the paper uses a certificate matrix whose PSD-ness indicates global optimality). Operationally, you check something like:
+If the condition passes, you can report that the solution is globally optimal for the stated problem, not just locally consistent. If it fails, that does not automatically mean your solution is bad, but it means you do not have the proof. The failure could come from the relaxation not being tight at the chosen rank, or from the optimizer landing at a stationary point that does not correspond to the tight relaxed solution.
 
-- if the smallest eigenvalue is nonnegative → **certified globally optimal**
-- otherwise → not certified (either the relaxation isn’t tight at this rank, or you’re at a bad stationary point)
+### Step 4 Increase rank and repeat using the Riemannian Staircase
 
-### Step 4 — If not certified, increase rank and try again (Riemannian Staircase)
-If the certificate fails, the algorithm increases the rank of the BM factorization and continues—this is the “staircase” mechanism. The idea is that as you increase rank, you have a better chance of reaching a point that corresponds to the tight SDP solution.
+If you do not get a certificate, the method gives you a principled way to try harder by increasing the rank in the Burer Monteiro factorization and continuing the optimization. This is the Riemannian Staircase idea. The intuition is that higher rank provides more expressive power, which can allow the method to reach a point that matches the tight semidefinite solution when such a tight solution exists.
 
-**This is a big practical win:** the method has a built-in, principled “try harder” knob (rank), rather than only heuristic restarts.
+This matters because it replaces a purely heuristic strategy like random restarts with something that is more structured. Instead of hoping that a different initialization finds the right basin, you expand the search space in a controlled way that is tied to the theoretical relaxation. In practice you still may need good numerics and good implementations, but the escalation mechanism is not arbitrary, and it gives you a clear knob to turn when certification fails.
 
----
- {% include figure.html path="assets/img/Plaza2-CORA.gif" class="img-fluid rounded z-depth-1" %} 
- ---
+{% include figure.html path="assets/img/Plaza2-CORA.gif" class="img-fluid rounded z-depth-1" %}
 
-## What’s the actual significance?
+## What is the actual significance
 
-Here’s what I take away as the “so what”:
+One major takeaway is that certifiability can become a capability that fits into existing factor graph thinking. If your mental model is building a sparse graph, running inference, and shipping an estimate downstream, this work suggests you can keep that mental model and still add a trustworthy global optimality check. That is compelling because it lowers the barrier between theory and practice, and it makes certification feel like an interface you can call rather than an entirely separate research prototype.
 
-1. **Certifiability becomes a *drop-in capability***  
-   If you already think in factor graphs, Certi-FGO suggests you don’t need to abandon that ecosystem to get global guarantees.
+Another takeaway is that structure is the whole scaling story, and the paper treats structure as the primary design constraint rather than an afterthought. The contribution is not only that lifting and low rank factorization work, but that they can be done in a way that respects the original interaction pattern. That is the difference between a method that works on toy graphs and a method that can plausibly compete with standard backends on real problems.
 
-2. **Structure is the scaling story**  
-   The reason factor graphs scale is sparsity. The paper’s central contribution is showing how to keep that structure through lifting + BM, so certification doesn’t automatically imply “dense SDP pain.”
+A third takeaway is that this creates a clean system behavior that is easy to reason about. You run estimation, then you ask whether the result is certified. If it is certified, you can proceed with higher confidence. If it is not certified, you can decide whether to escalate rank, adjust sensing assumptions, or trigger additional validation. Even when you do not get a certificate, you still get useful information because you learn that the problem instance may be ambiguous or that the relaxation is not tight under your current settings.
 
-3. **A clean system-level interface**  
-   From a system perspective, this gives a nice API:
-   - run estimation
-   - ask: “certified or not?”
-   - if not, run a principled escalation (rank)
+In autonomy settings where decisions are expensive or safety critical, that kind of explicit quality signal is valuable. It changes the conversation from trusting optimization because it usually works to trusting optimization because you can verify when it has truly succeeded. That is the difference between a backend that only produces numbers and a backend that produces numbers plus a guarantee when the math supports it.
 
-That’s exactly the kind of behavior you want in safety-critical or high-autonomy settings: don’t just output an estimate—output an estimate with a verifiable quality flag.
-
-
----
-
- {% include figure.html path="assets/img/plots.png" class="img-fluid rounded z-depth-1" %} 
-
+{% include figure.html path="assets/img/plots.png" class="img-fluid rounded z-depth-1" %}
 
 ## Closing thought
 
-Certi-FGO is exciting because it treats certifiability as a **workflow feature**, not just a theoretical property. The paper’s story is basically: *don’t throw away factor graphs—lift them carefully so you can keep sparsity, optimize efficiently, and still certify global optimality when the relaxation is tight.*
+What makes Certi FGO exciting is that it treats certifiability as a workflow feature that can integrate with the way roboticists already build and debug estimation systems. The story is that you do not need to abandon factor graphs to get global guarantees. You lift the problem carefully so that sparsity survives, you optimize efficiently in the lifted space, and when the relaxation is tight you get a checkable certificate that tells you the answer is globally optimal. That combination of practical structure and principled verification is exactly what makes the approach feel like a step toward estimation backends that are not only scalable, but also trustworthy.

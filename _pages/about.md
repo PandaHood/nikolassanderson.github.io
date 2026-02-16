@@ -3,7 +3,7 @@ layout: about
 title: About
 permalink: /
 # subtitle: <a href='https://marinerobotics.mit.edu/'>MIT CSAIL</a> / <a href='https://www.whoi.edu/'>WHOI</a>
-subtitle: <strong> Robotics & SLAM <br> Undergrad @ Northeastern University </strong>
+subtitle: <strong> Building Robots to Explore </strong>
 
 profile:
   align: right

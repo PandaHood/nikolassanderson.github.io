@@ -14,9 +14,7 @@ One of the few constants in my time at Northeastern is this Marine Robotics team
 
 If any saying encapsulates this team, this year, and this experience, it is **No Guts, No Glory**. To me, that does not mean being reckless. It means being resilient. It means holding composure when plans collapse and still finding a way to execute. It means taking responsibility seriously, even when the pressure is real and the system is fragile.
 
-This post is my perspective as an undergrad who grew into leadership over a few seasons. I never joined thinking I would run a subsystem, and I definitely never joined expecting to become project lead. It “just kind of happened” in the way most growth happens: one responsibility at a time, one hard week at a time, one late night at a time.
-
----
+This post is my perspective as an member who grew into leadership over a few seasons. I never joined thinking I would be in charge of anything, and I definitely never joined expecting to become project lead. It “just kind of happened” as I spent more days dedicated to it evenutally I was the fewof my cohort that was left. 
 
 ## Why this team mattered so much to me
 
