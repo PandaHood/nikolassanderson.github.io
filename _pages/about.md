@@ -18,9 +18,9 @@ social: true  # includes social icons at the bottom of the page
 
 ## My Background
 
-I am currently an undergrad at Northeastern University where I am advised by
-<a href="https://www.ece.neu.edu/people/singh-hanumant">Hanu Singh</a>,
-<a href="https://www.ece.neu.edu/people/everett-michael">Michael Everett</a> and, <a href="https://coe.northeastern.edu/people/rosen-david/">David M. Rosen</a>
+I am an undergrad at Northeastern University where I am advised by
+<a href="https://www.ece.neu.edu/people/singh-hanumant">Hanu Singh</a> and
+<a href="https://www.ece.neu.edu/people/everett-michael">Michael Everett</a>. I currently work work at the University of Michigan under <a href="https://alanpapalia.github.io/">Alan Papalia</a>
 on a broad set of topics in robot navigation and perception.
 My goal is to develop algorithms that enable robotic navigation in challenging environments, such as the ocean, with a particular interest in applying tools from mathematical optimization theory. I will be applying to PhD programs for a Fall 2027 start.
 
