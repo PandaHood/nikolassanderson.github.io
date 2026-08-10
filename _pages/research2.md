@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Sparse Variable Projection
-nav: true
+nav: false
 nav_order: 2
 ---
 

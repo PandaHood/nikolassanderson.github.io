@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Online Certifable SLAM
-nav: true
+nav: false
 nav_order: 3
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Simplfying Certifiable Estimation
-nav: true
+nav: false
 nav_order: 1
 ---
 

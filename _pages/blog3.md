@@ -1,7 +1,7 @@
 ---
 layout: page
 title: No Guts, No Glory
-nav: true
+nav: false
 nav_order: 5
 ---
 

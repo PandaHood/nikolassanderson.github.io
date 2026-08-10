@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Undergrad Research Advice
-nav: true
+nav: false
 nav_order: 4
 ---
 **Date** February 15 2026  
