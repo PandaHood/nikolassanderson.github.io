@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Research
-nav: True
+nav: true
 nav_order: 1
 ---
 

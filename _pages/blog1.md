@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Marine Robotics
-nav: True
+nav: true
 nav_order: 4
 ---
 
