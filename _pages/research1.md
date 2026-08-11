@@ -62,7 +62,7 @@ Side view of the different levels within the payload (left). Isometric view of t
 
 Not much to say, it goes fast!
 
-{% include figure.html path="assets/img/F1-fifth.png" class="img-fluid rounded z-depth-1" %}
+{% include figure.html path="assets/img/F1-fith.jpg" class="img-fluid rounded z-depth-1" %}
 
 
 
