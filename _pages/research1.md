@@ -1,96 +1,69 @@
 ---
 layout: page
-title: Simplfying Certifiable Estimation
-nav: false
+title: Research
+nav: True
 nav_order: 1
 ---
 
-**Date** February 10 2026  
-**Tags** robotics, SLAM, factor graphs, certifiable estimation, SDP, optimization
+My research develops algorithms and systems that enable robots to explore and monitor challenging environments. Among the topics I have worked on certifably correct estimation, acclerating robotic perception, large-scale data collections, and high-speed off-road robotics. 
+
+
+## Accelerating Robotics Perception
+
+{% include figure.html path="assets/img/Sparse.png" class="img-fluid rounded z-depth-1" %}
+
+Our approach exploits separability in opti-
+mization problem to perform variable projection and analytically eliminate a subset of variables (reducing problem size and improving conditioning), while preserving the efficiency of the original problem’s sparsity structure. Our approach can be applied as a one-time preprocessing step before passing the problem to a standard iterative solver.
+
+## Certifably Correct SLAM on Factor-graphs
+
+We show that the factor graph and certifiable estimation paradigms, which have thus far been treated as essentially independent in the literature, can be naturally synthesized into a unified framework for certifiable factor graph optimization that combines the ease of use of the former with the strong performance guarantees of the latter. The key insight enabling our synthesis is that the core mathematical constructions used to develop certifiable estimators (Shor's relaxation and Burer-Monteiro factorization) inherit a factor graph structure from the original problem: applying these transformations to a QCQP-representable estimation task with an associated factor graph model yields a lifted problem with identical factor graph connectivity whose constituent variables and factors are simple one-to-one algebraic transformations (lifts) of those appearing in the original QCQP's factor graph. This correspondence enables the Riemannian Staircase methodology for certifiable estimation to be easily instantiated and deployed using the same mature, highly-performant factor graph libraries and workflows already ubiquitously employed throughout robotics and computer vision. Experimental evaluation on a variety of pose graph optimization, landmark SLAM, and range-aided SLAM benchmarks demonstrates that our certifiable factor graph optimization methodology enables the implementation of certifiable estimators that are functionally equivalent to current state-of-the-art hand-designed, problem-specific methods, while dramatically reducing the required implementation effort from the order of months to hours. 
 
 {% include figure.html path="assets/img/certi-fgo.png" class="img-fluid rounded z-depth-1" %}
 
-> **What this post is about**  
-> The Certi FGO paper asks a simple question. Can we keep the usability and scalability of factor graphs while also gaining a reliable way to say that an answer is not just good, but truly the best possible answer. The main takeaway is that we can, as long as we lift the problem in a way that respects sparsity instead of collapsing everything into one huge dense optimization.
+Overview of our framework for certifiable factor graph optimization. Starting from a factor graph model of a QCQP-representable estimation problem
+(left), we construct Shor’s semidefinite relaxation and solve it using the Riemannian Staircase meta-algorithm (right). In each iteration of the Staircase, we apply
+local optimization to a Burer-Monteiro-factored instance of the relaxation to recover a first-order stationary point Y ⋆. We then test whether Y ⋆ determines
+an optimal SDP solution Z⋆ = Y ⋆Y ⋆T using the certificate matrix S: if S ⪰ 0, then Z⋆ is certified optimal and the algorithm returns the symmetric factor
+Y ⋆; otherwise, the factorization dimension p is increased, and optimization resumes at the next level. Crucially, Shor’s relaxation and all of its associated
+Burer-Monteiro factorizations are parameterized by the same data matrices {Qk } and {Am} that define the original QCQP; in particular, this implies that
+each of the BM-factored SDP relaxations inherits a factor graph representation whose variables and factors are simple one-to-one algebraic transformations
+(lifts) of those appearing in the input graph. This enables us to automatically instantiate and locally optimize the BM-factored SDP relaxations appearing in
+each level of the Riemannian Staircase directly from the input factor graph using existing factor graph software libraries. Our approach thus preserves the
+modeling convenience and computational efficiency of current state-of-the-art factor graph-based software libraries and workflows while additionally providing
+the robustness and global optimality guarantees of certifiable estimation
 
-## Why this matters
-
-Factor graphs are the standard tool for SLAM and state estimation because they naturally match how sensing works in robotics. Each measurement touches only a small part of the state, so each factor stays local, and the full problem ends up sparse even when the graph is very large. That sparsity is not just a mathematical detail, it is the reason we can solve problems with thousands or millions of variables using practical computation and memory.
-
-At the same time, most of the solvers we rely on are local methods that behave well only when the landscape is kind. If the initialization is strong and the problem is well conditioned, local optimization is fast and accurate and usually good enough. But the situations where robotics gets interesting are exactly the situations where the landscape stops being kind, and local methods can converge to the wrong answer while still producing residuals that look plausible.
-
-When that happens the system can fool itself, especially in cases with symmetries, ambiguous associations, weak excitation, or multi robot alignment where different configurations explain the data nearly equally well. A local solver can lock into a nearby stationary point and the rest of the pipeline may treat it as truth. This is why the paper pushes for a missing capability that is more than just a better optimizer.
-
-The missing capability is a certificate that can be checked after the fact and trusted without hand waving. Instead of only returning an estimate, the backend returns an estimate plus a verifiable signal that this estimate is globally optimal for the stated problem. That signal is valuable because it can be used as a decision gate for downstream modules that need to know whether the map is trustworthy before planning, whether loop closures are consistent before accepting them, or whether a multi robot alignment step should be committed to the shared map.
-
-## The usual route to certificates
-
-A standard path to certifiability is to rewrite the estimation problem in a form that exposes its nonconvex structure, often as a quadratically constrained quadratic program. Then you build a convex relaxation of that problem as a semidefinite program. If the relaxation is tight, the solution of the semidefinite program encodes the global optimum of the original nonconvex problem, and the tightness itself provides the proof you wanted.
-
-This is a clean story on paper, and it has led to a lot of insight in certifiable estimation. The catch is that generic semidefinite programming can be brutally expensive when the lifted matrix is large, because the lifted variable is a matrix whose size grows with the number of original variables. In robotics graphs that means the naive approach quickly becomes too large to be a practical backend.
-
-So the real question is not whether semidefinite relaxations can certify things, because they can. The real question is whether we can get the same certification power without paying the dense cost that usually comes with lifting. In other words, can we keep the factor graph scaling story while still accessing the convex relaxation and its certificate.
-
-## The key idea
-
-The key insight in the paper is that lifting does not have to destroy structure if you do it with the factor graph in mind. The fear people often have is that once you lift, every variable interacts with every other variable, and sparsity disappears. But the factor graph tells you exactly which variables should interact, and the paper shows how to build the lifted representation so that the interaction pattern remains local.
-
-Two ideas make this work. The first is Shor style lifting, which replaces products of variables with entries of a lifted matrix representation. The second is the Burer Monteiro factorization, which represents that lifted matrix as a low rank product, turning the convex semidefinite program into a structured nonconvex problem over a manifold.
-
-What matters is that this nonconvex problem is not a random dense thing. It can be written as a lifted factor graph where each factor still involves only a small neighborhood, much like the original graph. The variables look different because they live on lifted manifolds, but the adjacency pattern still mirrors the original sensing pattern. This is the heart of why the approach can scale, because it preserves the same kind of locality that makes standard factor graph solvers efficient.
-
-Once you accept that, the whole idea of certifiability shifts from being a separate solver stack to being something that can live inside the same graph based workflow. You can still talk about building factors, keeping sparsity, and running iterative optimization, while also keeping the door open to a global optimality certificate when the relaxation is tight.
-
-## What the Certi FGO pipeline does
-
-### Step 1 Build the lifted factor graph
-
-You start from a standard estimation problem with poses and measurements, and you rewrite it into a quadratic form that is suitable for relaxation. Then you apply lifting so that the objective and constraints become linear in a lifted matrix variable. After that you apply a low rank factorization so that the lifted matrix is represented implicitly by smaller factors, which becomes the set of variables you actually optimize.
-
-In many robotics problems, the rotation related parts of the state naturally map to orthonormality constraints, and in the lifted world those become blocks on Stiefel type manifolds. That sounds abstract, but the operational point is simple. Instead of optimizing directly over rotations and translations, you optimize over structured blocks that encode them in a way that lines up with the relaxed semidefinite program. Each factor in the graph becomes a lifted factor that still only touches the corresponding local blocks, so the graph remains sparse.
-
-### Step 2 Optimize locally in the lifted space
-
-Once the lifted graph is built, you run a local solver, but now it is a solver that respects the geometry of the lifted variables. The paper uses Riemannian optimization, which you can think of as a version of iterative descent or Gauss Newton that takes steps along the manifold rather than stepping through Euclidean space and projecting after the fact.
-
-This step feels familiar if you have ever run a local optimizer on a factor graph, because you still accumulate local contributions and exploit sparsity. The difference is that the state lives on a product of manifolds defined by the lifted constraints, and the algorithm uses that structure to compute gradients, retractions, and updates in a consistent way. The benefit is that you are now searching in a space that is directly tied to the semidefinite relaxation, which is what makes certification possible afterward.
-
-### Step 3 Certify
-
-After you reach a stationary point in the lifted space, you compute a certificate object that tells you whether the point corresponds to a globally optimal solution of the original nonconvex problem. In practical terms this involves constructing a matrix whose positive semidefiniteness is the condition for global optimality under the relaxation. You then check its smallest eigenvalue, or an equivalent condition, to decide whether the certificate passes.
-
-If the condition passes, you can report that the solution is globally optimal for the stated problem, not just locally consistent. If it fails, that does not automatically mean your solution is bad, but it means you do not have the proof. The failure could come from the relaxation not being tight at the chosen rank, or from the optimizer landing at a stationary point that does not correspond to the tight relaxed solution.
-
-### Step 4 Increase rank and repeat using the Riemannian Staircase
-
-If you do not get a certificate, the method gives you a principled way to try harder by increasing the rank in the Burer Monteiro factorization and continuing the optimization. This is the Riemannian Staircase idea. The intuition is that higher rank provides more expressive power, which can allow the method to reach a point that matches the tight semidefinite solution when such a tight solution exists.
-
-This matters because it replaces a purely heuristic strategy like random restarts with something that is more structured. Instead of hoping that a different initialization finds the right basin, you expand the search space in a controlled way that is tied to the theoretical relaxation. In practice you still may need good numerics and good implementations, but the escalation mechanism is not arbitrary, and it gives you a clear knob to turn when certification fails.
 
 {% include figure.html path="assets/img/Plaza2-CORA.gif" class="img-fluid rounded z-depth-1" %}
 
-## What is the actual significance
+We can recover globally optimial solutions from random initalizations using the certifable factor-graph framework.
 
-One major takeaway is that certifiability can become a capability that fits into existing factor graph thinking. If your mental model is building a sparse graph, running inference, and shipping an estimate downstream, this work suggests you can keep that mental model and still add a trustworthy global optimality check. That is compelling because it lowers the barrier between theory and practice, and it makes certification feel like an interface you can call rather than an entirely separate research prototype.
 
-Another takeaway is that structure is the whole scaling story, and the paper treats structure as the primary design constraint rather than an afterthought. The contribution is not only that lifting and low rank factorization work, but that they can be done in a way that respects the original interaction pattern. That is the difference between a method that works on toy graphs and a method that can plausibly compete with standard backends on real problems.
+## NEUROAM Large-Scale Heterogeneous Data Collection
 
-A third takeaway is that this creates a clean system behavior that is easy to reason about. You run estimation, then you ask whether the result is certified. If it is certified, you can proceed with higher confidence. If it is not certified, you can decide whether to escalate rank, adjust sensing assumptions, or trigger additional validation. Even when you do not get a certificate, you still get useful information because you learn that the problem instance may be ambiguous or that the relaxation is not tight under your current settings.
+This paper presents the Northeastern University Robotic Observation and Mapping (NeuROAM) dataset, a large-scale, multi-modal, multi-robot dataset designed to facilitate research in multi-robot perception in dynamic, communication- constrained settings. NeuROAM includes data collected simultaneously from multiple heterogeneous robot platforms, including wheeled and legged robots with different motion patterns and dynamics, operating in semi-urban outdoor and indoor environments on a college campus. These environments are highly dynamic, with varying lighting conditions and substantial pedestrian traffic. The dataset features multi-modal sensing, including stereo RGB cameras, inertial measurement units (IMU), and LiDAR, and detailed inter-robot communication monitoring, which supports analysis of real-world communication patterns and the development of algorithms that explicitly account for communication constraints.
 
-In autonomy settings where decisions are expensive or safety critical, that kind of explicit quality signal is valuable. It changes the conversation from trusting optimization because it usually works to trusting optimization because you can verify when it has truly succeeded. That is the difference between a backend that only produces numbers and a backend that produces numbers plus a guarantee when the math supports it.
+{% include figure.html path="assets/img/teaser_new.png" class="img-fluid rounded z-depth-1" %}
 
-{% include figure.html path="assets/img/plots.png" class="img-fluid rounded z-depth-1" %}
+The NeuROAM dataset is collected simultaneously using five heterogeneous platforms on the Northeastern University campus in Boston. It includes kilometer-scale outdoor trajectories as well as indoor trajectories spanning multiple buildings and floors. The dataset presents a wide range of challenging scenarios for localization, mapping, and communication, including but not limited to: (1) elevator and basement, (2) degenerate stairways and bridges, (3) long traversal on irregular staircases, (4) reflective building flooring, (5) large glass surfaces, (6) highly dynamic scenes, and (7) nearly identical floor plans across levels.
 
-## Closing thought
 
-What makes Certi FGO exciting is that it treats certifiability as a workflow feature that can integrate with the way roboticists already build and debug estimation systems. The story is that you do not need to abandon factor graphs to get global guarantees. You lift the problem carefully so that sparsity survives, you optimize efficiently in the lifted space, and when the relaxation is tight you get a checkable certificate that tells you the answer is globally optimal. That combination of practical structure and principled verification is exactly what makes the approach feel like a step toward estimation backends that are not only scalable, but also trustworthy.
+{% include figure.html path="assets/img/payload_screenshot.png" class="img-fluid rounded z-depth-1" %}
 
-{% include figure.html path="assets/img/icra.PNG" class="img-fluid rounded z-depth-1" %}
+Each robot platform was equipped with a custom sensor payload including an Ouster LiDAR, stereo RGB cameras, a VectorNav IMU, a Doodle Labs long-range radio, and a GPS receiver. Each payload carried identical hardware, with exception to the LiDAR model: two payloads used 128-beam Ouster sensors (OS1-128) on the Go2W and AgileX Hunter platforms, while the remaining robots carried 32-beam sensors (OS1-32).
 
-<iframe
-  src="https://dartmouthrobotics.github.io/icra-2025-robots-wild/spotlight-papers/icra-2025-robots-wild-16.pdf"
-  width="100%"
-  height="650"
-  style="border:1px solid #e5e7eb; border-radius:12px;"
-  loading="lazy">
-</iframe>
+
+{% include figure.html path="assets/img/PAYLOAD_LAYERS.jpg" class="img-fluid rounded z-depth-1" %}
+
+Side view of the different levels within the payload (left). Isometric view of the different levels (right)
+
+
+## F1-Fifth
+
+Not much to say, it goes fast!
+
+{% include figure.html path="assets/img/F1-fifth.png" class="img-fluid rounded z-depth-1" %}
+
+
+
+
