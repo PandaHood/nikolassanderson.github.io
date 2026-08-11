@@ -8,11 +8,11 @@ nav_order: 4
 Most recent technical documentation from my marine robotics team. 
 
 <iframe
-  path="assets/pdf/NUWave_TechnicalDocumentation_2026.pdf"
+  src="https://docs.google.com/document/d/1-tuV6NjMq9eEQ7HAEov81RVhd77nQvalxfRAddZIPxY/preview"
   width="100%"
-  height="600"
-  style="border: none;"
-  title="NUWave Technical Documentation 2026">
+  height="650"
+  style="border:1px solid #e5e7eb; border-radius:12px;"
+  loading="lazy">
 </iframe>
 
 
