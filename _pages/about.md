@@ -9,7 +9,7 @@ profile:
   align: right
   # image: prof_pic.jpg
   image: logo.png
-  image_circular: true # crops the image to make it circular
+  image_circular: false # crops the image to make it circular
 
 news: false  # includes a list of news items
 selected_papers: false # includes a list of papers marked as "selected={true}"
@@ -23,6 +23,8 @@ I am an undergrad at Northeastern University where I am advised by
 <a href="https://www.ece.neu.edu/people/everett-michael">Michael Everett</a>. I currently work at the University of Michigan under <a href="https://alanpapalia.github.io/">Alan Papalia</a>
 on a broad set of topics in robot navigation and perception.
 My goal is to develop algorithms that enable robotic navigation in challenging environments, such as the ocean, with a particular interest in applying tools from mathematical optimization theory. I will be applying to PhD programs for a Fall 2027 start.
+
+I also serve as the co-project lead for the Northeastern Marine Robotics Team. We compete in the Mate ROV World Championship and our highest placement was 8th at the 2023 World Championship. We are advised by <a href="https://coe.northeastern.edu/people/consi-tom/">Thomas Consi</a>.
 
 In my freetime I enjoy playing soccer, running, skiing, videogames (strategy, simulation, and action-adventure), Star Trek and, Star Wars.
 
